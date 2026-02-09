@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "catalog": {
+    "allowedComponents": [
+      "Container",
+      "Row",
+      "Column",
+      "Card",
+      "Heading",
+      "Text",
+      "Badge",
+      "Divider",
+      "Spacer",
+      "Button",
+      "Image"
+    ],
+    "componentDefaults": {
+      "Container": {
+        "gap": 16
+      },
+      "Card": {
+        "padding": 20,
+        "gap": 12
+      },
+      "Text": {
+        "size": 16
+      }
+    }
+  },
+  "theme": {
+    "fontFamily": "ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+    "textColor": "#0f172a",
+    "headingColor": "#020617",
+    "mutedTextColor": "#475569",
+    "cardBackground": "#ffffff",
+    "cardBorderColor": "#e2e8f0",
+    "borderRadius": 16,
+    "spacing": 12
+  },
+  "viewport": {
+    "width": 1200,
+    "height": 630,
+    "deviceScaleFactor": 2
+  },
+  "screenshot": {
+    "type": "png",
+    "omitBackground": false
+  },
+  "canvas": {
+    "background": "#f8fafc",
+    "padding": 24
+  }
+}

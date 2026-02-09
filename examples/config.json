@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "catalog": {
+    "allowedComponents": ["Container", "Card", "Heading", "Text", "Button", "Badge", "Spacer"],
+    "componentDefaults": {
+      "Container": { "gap": 14 },
+      "Card": { "padding": 20, "gap": 10 },
+      "Button": { "background": "#2563eb" }
+    }
+  },
+  "viewport": { "width": 1200, "height": 630, "deviceScaleFactor": 2 },
+  "canvas": { "background": "#f1f5f9", "padding": 24 }
+}

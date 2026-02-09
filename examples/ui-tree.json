@@ -1,0 +1,29 @@
+{
+  "root": {
+    "type": "Container",
+    "props": {
+      "height": "100%",
+      "justify": "center"
+    },
+    "children": [
+      {
+        "type": "Card",
+        "children": [
+          {
+            "type": "Heading",
+            "props": {
+              "text": "Tree Spec Input",
+              "level": 2
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "text": "This came from the nested tree schema format."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
