@@ -131,3 +131,13 @@ npm test
 ```
 
 Integration screenshot test runs only when Playwright Chromium binary is available.
+
+## Packaged skills
+
+This package ships with a reusable Codex skill:
+
+- `skills/json-render-ticket-table/SKILL.md`
+
+After global install (`npm i -g json-render-cli`), you can find it under your global `node_modules` path, for example:
+
+- `$(npm root -g)/json-render-cli/skills/json-render-ticket-table/SKILL.md`

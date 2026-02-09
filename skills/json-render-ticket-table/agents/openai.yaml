@@ -1,0 +1,4 @@
+interface:
+  display_name: "JSON Render Ticket Table"
+  short_description: "Render compact ticket status tables as images"
+  default_prompt: "Render issue/ticket data into a compact head+body table image using json-render-cli."
