@@ -54,6 +54,9 @@ export function ChatPanel({
           if (message.role === "thinking") {
             return (
               <div key={message.id} className={`${styles.messageRow} ${styles.agentRow}`}>
+                <span className={`${styles.avatar} ${styles.agentAvatar}`} aria-hidden="true">
+                  ✦
+                </span>
                 <div className={`${styles.bubble} ${styles.agentBubble}`}>
                   <ThinkingDots />
                 </div>
@@ -65,6 +68,9 @@ export function ChatPanel({
             return (
               <div key={message.id} className={`${styles.messageRow} ${styles.userRow}`}>
                 <div className={`${styles.bubble} ${styles.userBubble}`}>{message.text}</div>
+                <span className={`${styles.avatar} ${styles.userAvatar}`} aria-hidden="true">
+                  U
+                </span>
               </div>
             );
           }
@@ -76,11 +82,10 @@ export function ChatPanel({
 
             return (
               <div key={message.id} className={`${styles.messageRow} ${styles.agentRow}`}>
+                <span className={`${styles.avatar} ${styles.agentAvatar}`} aria-hidden="true">
+                  ✦
+                </span>
                 <div className={`${styles.bubble} ${styles.agentBubble} ${styles.imageBubble}`}>
-                  <div className={styles.imageMeta}>
-                    <span className={styles.metaTag}>{skill.name}</span>
-                    <span className={styles.metaMode}>{imageMode.toUpperCase()}</span>
-                  </div>
                   <Image
                     src={imageSrc}
                     alt={`${skill.name} result preview`}
@@ -96,6 +101,9 @@ export function ChatPanel({
 
           return (
             <div key={message.id} className={`${styles.messageRow} ${styles.agentRow}`}>
+              <span className={`${styles.avatar} ${styles.agentAvatar}`} aria-hidden="true">
+                ✦
+              </span>
               <div className={`${styles.bubble} ${styles.agentBubble}`}>{message.text}</div>
             </div>
           );
@@ -103,9 +111,6 @@ export function ChatPanel({
       </div>
 
       <div className={styles.composer}>
-        <label htmlFor="fake-prompt-input" className={styles.composerLabel}>
-          Prompt Draw
-        </label>
         <div className={styles.composerInner}>
           <textarea
             id="fake-prompt-input"

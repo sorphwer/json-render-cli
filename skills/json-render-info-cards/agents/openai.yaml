@@ -1,0 +1,4 @@
+interface:
+  display_name: "JSON Render Info Cards"
+  short_description: "Render KPI and summary cards as images"
+  default_prompt: "Render a compact information card image using json-render-cli (KPI overview, metric comparison, or daily summary), with theme.mode defaulting to system."

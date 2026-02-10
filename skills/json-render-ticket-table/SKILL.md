@@ -17,6 +17,7 @@ Keep layout stable so repeated snapshots are visually consistent.
 3. Pass config via process substitution (`-c <(...)`) to avoid temp config files.
 4. Enable `screenshot.fullPage=true` when row count or text wrapping is variable.
 5. Render PNG and return file path (or Base64 only when explicitly requested).
+6. Theme mode is configured with `theme.mode`; keep `system` as default unless a fixed mode is requested.
 
 ## Build And Render
 
@@ -31,7 +32,7 @@ Default style:
 
 ## Layout Rules
 
-- Keep standard six columns: `ID`, `优先级`, `状态`, `Assignee`, `更新时间`, `主题`.
+- Keep standard six columns: `ID`, `Priority`, `Status`, `Assignee`, `Updated`, `Topic`.
 - Use `Badge` for priority and status.
 - Keep deterministic widths for stable snapshots.
 

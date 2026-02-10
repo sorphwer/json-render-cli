@@ -7,8 +7,9 @@ export ID="#1236"
 export PRIORITY="HIGH"
 export STATUS="OPEN"
 export ASSIGNEE="Riino"
-export UPDATED_AT="周一 14:34"
-export TOPIC="plugin-daemon 链接 Redis 问题"
+export UPDATED_AT="Mon 14:34"
+export TOPIC="plugin-daemon Redis connectivity issue"
+export SPEC_PATH="${SPEC_PATH:-/Users/sorphwer/repos/json-render-cli/skills/json-render-ticket-table/references/compact-ticket-spec.template.json}"
 ```
 
 ## 2) Build message JSON in memory
@@ -16,7 +17,7 @@ export TOPIC="plugin-daemon 链接 Redis 问题"
 ```bash
 MESSAGE_JSON="$(python3 - <<'PY'
 import json, pathlib, os
-p = pathlib.Path('/Users/sorphwer/.codex/skills/json-render-ticket-table/references/compact-ticket-spec.template.json')
+p = pathlib.Path(os.environ["SPEC_PATH"])
 tpl = p.read_text(encoding='utf-8')
 m = {
   '__ID__': os.environ['ID'],
@@ -45,6 +46,7 @@ node /Users/sorphwer/repos/json-render-cli/dist/cli.js \
     "allowedComponents": ["Container", "Row", "Column", "Card", "Heading", "Text", "Badge", "Divider", "Spacer", "Button", "Image"],
     "componentDefaults": {}
   },
+  "theme": { "mode": "system" },
   "viewport": { "width": 986, "height": 120, "deviceScaleFactor": 2 },
   "screenshot": { "type": "png", "omitBackground": false, "fullPage": true },
   "canvas": { "background": "#ffffff", "padding": 0 }

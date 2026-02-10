@@ -17,19 +17,19 @@
     "hIdText": { "type": "Text", "props": { "text": "ID", "size": 13, "weight": 700, "color": "#334155" } },
 
     "hPri": { "type": "Container", "props": { "width": 108, "padding": "10px 12px", "style": { "borderRight": "1px solid #e2e8f0" } }, "children": ["hPriText"] },
-    "hPriText": { "type": "Text", "props": { "text": "优先级", "size": 13, "weight": 700, "color": "#334155" } },
+    "hPriText": { "type": "Text", "props": { "text": "Priority", "size": 13, "weight": 700, "color": "#334155" } },
 
     "hStat": { "type": "Container", "props": { "width": 94, "padding": "10px 12px", "style": { "borderRight": "1px solid #e2e8f0" } }, "children": ["hStatText"] },
-    "hStatText": { "type": "Text", "props": { "text": "状态", "size": 13, "weight": 700, "color": "#334155" } },
+    "hStatText": { "type": "Text", "props": { "text": "Status", "size": 13, "weight": 700, "color": "#334155" } },
 
     "hOwner": { "type": "Container", "props": { "width": 122, "padding": "10px 12px", "style": { "borderRight": "1px solid #e2e8f0" } }, "children": ["hOwnerText"] },
     "hOwnerText": { "type": "Text", "props": { "text": "Assignee", "size": 13, "weight": 700, "color": "#334155" } },
 
     "hTime": { "type": "Container", "props": { "width": 132, "padding": "10px 12px", "style": { "borderRight": "1px solid #e2e8f0" } }, "children": ["hTimeText"] },
-    "hTimeText": { "type": "Text", "props": { "text": "更新时间", "size": 13, "weight": 700, "color": "#334155" } },
+    "hTimeText": { "type": "Text", "props": { "text": "Updated", "size": 13, "weight": 700, "color": "#334155" } },
 
     "hTopic": { "type": "Container", "props": { "width": 364, "padding": "10px 12px" }, "children": ["hTopicText"] },
-    "hTopicText": { "type": "Text", "props": { "text": "主题", "size": 13, "weight": 700, "color": "#334155" } },
+    "hTopicText": { "type": "Text", "props": { "text": "Topic", "size": 13, "weight": 700, "color": "#334155" } },
 
     "dataRow": {
       "type": "Row",

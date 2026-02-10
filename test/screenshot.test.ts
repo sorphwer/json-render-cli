@@ -21,12 +21,21 @@ function makeConfig() {
       componentDefaults: {}
     },
     theme: {
+      mode: "system" as const,
       fontFamily: "sans-serif",
       textColor: "#111",
       headingColor: "#111",
       mutedTextColor: "#666",
       cardBackground: "#fff",
       cardBorderColor: "#ddd",
+      dark: {
+        textColor: "#eee",
+        headingColor: "#fff",
+        mutedTextColor: "#bbb",
+        cardBackground: "#111",
+        cardBorderColor: "#333",
+        canvasBackground: "#000"
+      },
       borderRadius: 8,
       spacing: 8
     },

@@ -46,10 +46,13 @@
   gap: 12px;
   background: radial-gradient(circle at top left, rgba(247, 233, 194, 0.2), transparent 45%),
     linear-gradient(180deg, rgba(251, 251, 248, 0.88), rgba(246, 247, 251, 0.84));
+  min-height: 0;
 }
 
 .messageRow {
   display: flex;
+  align-items: flex-start;
+  gap: 8px;
   width: 100%;
   animation: messageIn 180ms ease;
 }
@@ -62,12 +65,42 @@
   justify-content: flex-start;
 }
 
+/* Avatars */
+.avatar {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  margin-top: 2px;
+  user-select: none;
+}
+
+.agentAvatar {
+  background: linear-gradient(145deg, rgba(216, 232, 255, 0.95), rgba(195, 218, 255, 0.9));
+  color: #18406f;
+  font-size: 14px;
+}
+
+.userAvatar {
+  background: linear-gradient(145deg, #14120e, #262018);
+  color: #fdfcf8;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
 .bubble {
   border-radius: 16px;
   padding: 11px 12px;
-  max-width: min(100%, 90%);
+  max-width: min(100%, 85%);
   font-size: 14px;
   line-height: 1.5;
+  min-width: 0;
 }
 
 .userBubble {
@@ -87,31 +120,6 @@
   padding: 10px;
 }
 
-.imageMeta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.metaTag,
-.metaMode {
-  font-size: 11px;
-  border-radius: 999px;
-  padding: 3px 8px;
-  letter-spacing: 0.03em;
-}
-
-.metaTag {
-  background: rgba(216, 232, 255, 0.95);
-  color: #18406f;
-}
-
-.metaMode {
-  background: rgba(241, 234, 213, 0.95);
-  color: #70520b;
-}
-
 .resultImage {
   width: 100%;
   height: auto;
@@ -123,16 +131,6 @@
   padding: 12px 14px 14px;
   border-top: 1px solid var(--color-border);
   background: rgba(253, 252, 249, 0.94);
-}
-
-.composerLabel {
-  display: block;
-  margin-bottom: 8px;
-  font-family: var(--font-mono-alt);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-ink-soft);
 }
 
 .composerInner {

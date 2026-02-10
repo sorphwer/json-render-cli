@@ -4,16 +4,24 @@ import { ShowcaseShell } from "@/components/showcase/ShowcaseShell";
 
 import styles from "./page.module.css";
 
+const ICON_CDN = "https://unpkg.com/@lobehub/icons-static-svg@latest/icons";
+
+const compatibleTools = [
+  { name: "OpenClaw", slug: "openclaw" },
+  { name: "Codex", slug: "codex" },
+  { name: "Cursor", slug: "cursor" },
+  { name: "Claude", slug: "claude" },
+];
+
 export default function Home() {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
         <a href="#top" className={styles.brand}>
-          json-render-cli
+          npm i -g json-render-cli && npx playwright install chromium
         </a>
         <nav className={styles.nav}>
-          <a href="#skills">View Skills</a>
-          <a href="#install">Install CLI</a>
+          <a href="https://github.com/sorphwer/json-render-cli" target="_blank" rel="noopener noreferrer">Visit Source Code</a>
         </nav>
       </header>
 
@@ -32,19 +40,21 @@ export default function Home() {
       </main>
 
       <footer id="install" className={styles.footer}>
-        <p className={styles.footerLabel}>Install</p>
-        <code className={styles.footerCode}>npm i -g json-render-cli</code>
-        <div className={styles.footerLinks}>
-          <a href="https://json-render.dev/" target="_blank" rel="noopener noreferrer">
-            json-render.dev
-          </a>
-          <a
-            href="https://github.com/vercel-labs/agent-skills"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Agent Skills Reference
-          </a>
+        <p className={styles.footerLabel}>Compatible with</p>
+        <div className={styles.iconGrid}>
+          {compatibleTools.map((tool) => (
+            <div key={tool.slug} className={styles.iconItem}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`${ICON_CDN}/${tool.slug}.svg`}
+                alt={tool.name}
+                width={40}
+                height={40}
+                loading="lazy"
+              />
+              <span>{tool.name}</span>
+            </div>
+          ))}
         </div>
       </footer>
     </div>

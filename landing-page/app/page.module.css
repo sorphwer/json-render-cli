@@ -134,6 +134,33 @@
   color: var(--color-ink);
 }
 
+.iconGrid {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.iconItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.iconItem:hover {
+  transform: translateY(-2px);
+  opacity: 0.8;
+}
+
+.iconItem span {
+  font-family: var(--font-mono-alt);
+  font-size: 11px;
+  color: var(--color-ink-soft);
+  letter-spacing: 0.02em;
+}
+
 @media (max-width: 768px) {
   .page {
     padding-top: 12px;

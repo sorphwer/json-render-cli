@@ -1,26 +1,40 @@
 # Compact Generic Table Template (No Temp JSON Files)
 
-Use this as a generic starter template. Customize columns, widths, and row mappings for your dataset.
+Use this starter to render a compact six-column table and adapt field values for your dataset.
 
-## 1) Define dataset-specific values
-
-Define variables for your own columns/rows (example below uses 4 columns):
+## 1) Fill values
 
 ```bash
-export C1_HEADER="Name"
-export C2_HEADER="Region"
-export C3_HEADER="Status"
-export C4_HEADER="Notes"
-
-export R1_C1="Service A"
-export R1_C2="us-east-1"
-export R1_C3="active"
-export R1_C4="Healthy"
+export ID="#1094"
+export PRIORITY="MEDIUM"
+export STATUS="IN REVIEW"
+export ASSIGNEE="Maya"
+export UPDATED_AT="Tue 10:22"
+export TOPIC="Checkout retry logic verification"
+export SPEC_PATH="${SPEC_PATH:-/Users/sorphwer/repos/json-render-cli/skills/json-render-table/references/compact-table-spec.template.json}"
 ```
 
-## 2) Build `-m` JSON in memory
+## 2) Build message JSON in memory
 
-Create JSON in memory (or reuse your own templating approach), then assign to `MESSAGE_JSON`.
+```bash
+MESSAGE_JSON="$(python3 - <<'PY'
+import json, pathlib, os
+p = pathlib.Path(os.environ["SPEC_PATH"])
+tpl = p.read_text(encoding="utf-8")
+m = {
+  "__ID__": os.environ["ID"],
+  "__PRIORITY__": os.environ["PRIORITY"],
+  "__STATUS__": os.environ["STATUS"],
+  "__ASSIGNEE__": os.environ["ASSIGNEE"],
+  "__UPDATED_AT__": os.environ["UPDATED_AT"],
+  "__TOPIC__": os.environ["TOPIC"],
+}
+for k, v in m.items():
+  tpl = tpl.replace(k, json.dumps(v, ensure_ascii=False)[1:-1])
+print(tpl)
+PY
+)"
+```
 
 ## 3) Render
 
@@ -34,13 +48,15 @@ node /Users/sorphwer/repos/json-render-cli/dist/cli.js \
     "allowedComponents": ["Container", "Row", "Column", "Card", "Heading", "Text", "Badge", "Divider", "Spacer", "Button", "Image"],
     "componentDefaults": {}
   },
-  "viewport": { "width": 1000, "height": 140, "deviceScaleFactor": 2 },
+  "theme": { "mode": "system" },
+  "viewport": { "width": 986, "height": 120, "deviceScaleFactor": 2 },
   "screenshot": { "type": "png", "omitBackground": false, "fullPage": true },
   "canvas": { "background": "#ffffff", "padding": 0 }
 }
 JSON
 ) \
-  -o /tmp/table-render.png
+  -o /tmp/table-render.png \
+  --size 986x120
 ```
 
-For ticket-focused output with predefined six columns and badges, use `json-render-ticket-table`.
+For ticket-focused output with opinionated field semantics, use `json-render-ticket-table`.

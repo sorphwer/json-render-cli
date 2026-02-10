@@ -1,0 +1,4 @@
+interface:
+  display_name: "JSON Render Announcement Cards"
+  short_description: "Render hero and announcement cards as images"
+  default_prompt: "Render an announcement-style card image using json-render-cli for a release update, hero message, or profile highlight, with theme.mode defaulting to system."

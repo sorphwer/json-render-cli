@@ -82,6 +82,25 @@ Tree spec is normalized to the flat structure internally.
       "Card": { "padding": 20 }
     }
   },
+  "theme": {
+    "mode": "system",
+    "fontFamily": "ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+    "textColor": "#0f172a",
+    "headingColor": "#020617",
+    "mutedTextColor": "#475569",
+    "cardBackground": "#ffffff",
+    "cardBorderColor": "#e2e8f0",
+    "dark": {
+      "textColor": "#e2e8f0",
+      "headingColor": "#f8fafc",
+      "mutedTextColor": "#94a3b8",
+      "cardBackground": "#0f172a",
+      "cardBorderColor": "#334155",
+      "canvasBackground": "#020617"
+    },
+    "borderRadius": 16,
+    "spacing": 12
+  },
   "viewport": {
     "width": 1200,
     "height": 630,
@@ -100,6 +119,8 @@ Tree spec is normalized to the flat structure internally.
 ```
 
 If `catalog.allowedComponents` is empty/missing, all built-in components are allowed.
+
+`theme.mode` supports `light`, `dark`, and `system` (default). `system` follows `prefers-color-scheme`.
 
 For variable row counts (for example, table cells wrapping to multiple lines), set
 `screenshot.fullPage` to `true` to avoid clipping the bottom rows.
@@ -138,12 +159,18 @@ Integration screenshot test runs only when Playwright Chromium binary is availab
 
 ## Packaged skills
 
-This package ships with two reusable Codex skills:
+This package ships with five reusable Codex skills:
 
 - `skills/json-render-table/SKILL.md` (generic table rendering)
 - `skills/json-render-ticket-table/SKILL.md` (ticket-focused table rendering)
+- `skills/json-render-info-cards/SKILL.md` (KPI and summary card rendering)
+- `skills/json-render-announcement-cards/SKILL.md` (announcement and hero card rendering)
+- `skills/json-render-flow-summary/SKILL.md` (step and timeline summary rendering)
 
 After global install (`npm i -g json-render-cli`), you can find it under your global `node_modules` path, for example:
 
 - `$(npm root -g)/json-render-cli/skills/json-render-table/SKILL.md`
 - `$(npm root -g)/json-render-cli/skills/json-render-ticket-table/SKILL.md`
+- `$(npm root -g)/json-render-cli/skills/json-render-info-cards/SKILL.md`
+- `$(npm root -g)/json-render-cli/skills/json-render-announcement-cards/SKILL.md`
+- `$(npm root -g)/json-render-cli/skills/json-render-flow-summary/SKILL.md`
