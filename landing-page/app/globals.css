@@ -1,0 +1,63 @@
+:root {
+  --color-ink: #16120c;
+  --color-ink-soft: #625844;
+  --color-accent: #155eef;
+  --color-border: rgba(54, 41, 25, 0.12);
+  --color-border-strong: rgba(42, 29, 13, 0.18);
+  --color-cloud: rgba(241, 236, 227, 0.95);
+  --shadow-soft: 0 10px 30px rgba(22, 16, 9, 0.09);
+  --shadow-lift: 0 22px 52px rgba(20, 16, 12, 0.17);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
+body {
+  font-family: var(--font-sans-alt), sans-serif;
+  color: var(--color-ink);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(247, 219, 157, 0.48), transparent 36%),
+    radial-gradient(circle at 82% 20%, rgba(179, 210, 255, 0.34), transparent 42%),
+    radial-gradient(circle at 32% 92%, rgba(206, 240, 219, 0.33), transparent 46%),
+    linear-gradient(180deg, #f7f5ef, #eff1f8 58%, #f4efe4);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(17, 16, 13, 0.04) 0.65px, transparent 0.65px);
+  background-size: 3px 3px;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
