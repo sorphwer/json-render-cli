@@ -43,7 +43,8 @@ export async function captureScreenshot(html: string, config: JsonRenderConfig):
 
     const bytes = await page.screenshot({
       type: "png",
-      omitBackground: config.screenshot.omitBackground
+      omitBackground: config.screenshot.omitBackground,
+      fullPage: config.screenshot.fullPage
     });
 
     return Buffer.from(bytes);

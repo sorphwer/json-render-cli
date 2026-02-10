@@ -1,6 +1,6 @@
 ---
 name: json-render-ticket-table
-description: Render compact head+body ticket status tables to PNG images with json-render-cli. Use when users ask to visualize issue or ticket data (ID, priority, status, assignee, update time, topic) as a clean table screenshot, including edge-to-edge and compact-width layouts.
+description: Render compact issue/ticket status tables to PNG images with json-render-cli. Use when users ask to visualize ticket fields (ID, priority, status, assignee, update time, topic) as a clean screenshot with stable column layout.
 ---
 
 # JSON Render Ticket Table
@@ -8,41 +8,41 @@ description: Render compact head+body ticket status tables to PNG images with js
 ## Overview
 
 Render ticket rows into a compact table image using `json-render-cli` components (`Column`, `Row`, `Container`, `Text`, `Badge`).
-Reuse a fixed layout so output stays visually consistent across tickets.
+Keep layout stable so repeated snapshots are visually consistent.
 
 ## Workflow
 
 1. Ensure `json-render-cli` is built.
-2. Generate message JSON from template placeholders (no temp spec file creation).
+2. Generate message JSON in memory from template placeholders.
 3. Pass config via process substitution (`-c <(...)`) to avoid temp config files.
-4. Render to PNG with tight `--size`.
-5. Return output path (or Base64 when requested).
+4. Enable `screenshot.fullPage=true` when row count or text wrapping is variable.
+5. Render PNG and return file path (or Base64 only when explicitly requested).
 
 ## Build And Render
 
-Use the no-garbage template in `references/compact-ticket-template.md`.
-Default output style:
-- No title area
-- Header + one body row
-- Compact horizontal spacing
-- Edge-to-edge screenshot
+Use `references/compact-ticket-template.md`.
+Use `references/compact-ticket-spec.template.json` as default ticket schema.
+
+Default style:
+- Header + body rows only (no title block)
+- Compact spacing and fixed columns
+- Edge-to-edge output
+- No bottom clipping with `screenshot.fullPage=true`
 
 ## Layout Rules
 
-- Keep exactly 6 columns: `ID`, `优先级`, `状态`, `Assignee`, `更新时间`, `主题`.
-- Keep header/body only unless the user explicitly asks for additional rows.
-- Keep column widths compact and deterministic.
+- Keep standard six columns: `ID`, `优先级`, `状态`, `Assignee`, `更新时间`, `主题`.
 - Use `Badge` for priority and status.
-- Use Chinese labels when the request is Chinese.
+- Keep deterministic widths for stable snapshots.
 
 ## Output Rules
 
-- Prefer `-o /tmp/<name>.png` for image delivery.
-- Use `-o stdout` only when caller explicitly asks for Base64.
-- Avoid creating temporary JSON files unless user explicitly asks.
+- Prefer `-o /tmp/<name>.png`.
+- Use `-o stdout` only if caller explicitly wants Base64.
+- Avoid writing temporary JSON files unless explicitly requested.
 
 ## Troubleshooting
 
 - If Chromium is missing, run: `npx playwright install chromium`.
-- If rendering is too wide, reduce `主题` width first.
-- If rendering is too tall, reduce row paddings and `--size` height.
+- If right side is cramped, increase topic column width first.
+- If bottom rows are clipped, set `screenshot.fullPage=true`.

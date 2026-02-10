@@ -47,10 +47,11 @@ export const JsonRenderConfigSchema = z
     screenshot: z
       .object({
         type: z.literal("png").default("png"),
-        omitBackground: z.boolean().default(false)
+        omitBackground: z.boolean().default(false),
+        fullPage: z.boolean().default(false)
       })
       .strict()
-      .default({ type: "png", omitBackground: false }),
+      .default({ type: "png", omitBackground: false, fullPage: false }),
     canvas: z
       .object({
         background: z.string().default("#f8fafc"),

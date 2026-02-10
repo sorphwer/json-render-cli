@@ -37,7 +37,8 @@ function makeConfig() {
     },
     screenshot: {
       type: "png" as const,
-      omitBackground: false
+      omitBackground: false,
+      fullPage: false
     },
     canvas: {
       background: "#fff",
@@ -73,9 +74,44 @@ describe("captureScreenshot cleanup", () => {
     const buffer = await captureScreenshot("<html></html>", makeConfig());
 
     expect(buffer.toString("hex")).toBe("89504e47");
+    expect(page.screenshot).toHaveBeenCalledWith({
+      type: "png",
+      omitBackground: false,
+      fullPage: false
+    });
     expect(page.close).toHaveBeenCalledTimes(1);
     expect(context.close).toHaveBeenCalledTimes(1);
     expect(browser.close).toHaveBeenCalledTimes(1);
+  });
+
+  it("forwards fullPage=true to Playwright screenshot options", async () => {
+    const page = {
+      setContent: vi.fn().mockResolvedValue(undefined),
+      screenshot: vi.fn().mockResolvedValue(Uint8Array.from([137, 80, 78, 71])),
+      close: vi.fn().mockResolvedValue(undefined)
+    };
+
+    const context = {
+      newPage: vi.fn().mockResolvedValue(page),
+      close: vi.fn().mockResolvedValue(undefined)
+    };
+
+    const browser = {
+      newContext: vi.fn().mockResolvedValue(context),
+      close: vi.fn().mockResolvedValue(undefined)
+    };
+
+    launchMock.mockResolvedValue(browser);
+    const config = makeConfig();
+    config.screenshot.fullPage = true;
+
+    await captureScreenshot("<html></html>", config);
+
+    expect(page.screenshot).toHaveBeenCalledWith({
+      type: "png",
+      omitBackground: false,
+      fullPage: true
+    });
   });
 
   it("still closes resources when screenshot fails", async () => {

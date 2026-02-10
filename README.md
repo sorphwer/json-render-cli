@@ -89,7 +89,8 @@ Tree spec is normalized to the flat structure internally.
   },
   "screenshot": {
     "type": "png",
-    "omitBackground": false
+    "omitBackground": false,
+    "fullPage": false
   },
   "canvas": {
     "background": "#f8fafc",
@@ -99,6 +100,9 @@ Tree spec is normalized to the flat structure internally.
 ```
 
 If `catalog.allowedComponents` is empty/missing, all built-in components are allowed.
+
+For variable row counts (for example, table cells wrapping to multiple lines), set
+`screenshot.fullPage` to `true` to avoid clipping the bottom rows.
 
 ## Built-in components
 
@@ -134,10 +138,12 @@ Integration screenshot test runs only when Playwright Chromium binary is availab
 
 ## Packaged skills
 
-This package ships with a reusable Codex skill:
+This package ships with two reusable Codex skills:
 
-- `skills/json-render-ticket-table/SKILL.md`
+- `skills/json-render-table/SKILL.md` (generic table rendering)
+- `skills/json-render-ticket-table/SKILL.md` (ticket-focused table rendering)
 
 After global install (`npm i -g json-render-cli`), you can find it under your global `node_modules` path, for example:
 
+- `$(npm root -g)/json-render-cli/skills/json-render-table/SKILL.md`
 - `$(npm root -g)/json-render-cli/skills/json-render-ticket-table/SKILL.md`

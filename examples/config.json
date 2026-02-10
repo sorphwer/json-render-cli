@@ -9,5 +9,6 @@
     }
   },
   "viewport": { "width": 1200, "height": 630, "deviceScaleFactor": 2 },
+  "screenshot": { "type": "png", "omitBackground": false, "fullPage": false },
   "canvas": { "background": "#f1f5f9", "padding": 24 }
 }

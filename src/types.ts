@@ -42,6 +42,7 @@ export interface JsonRenderConfig {
   screenshot: {
     type: "png";
     omitBackground: boolean;
+    fullPage: boolean;
   };
   canvas: {
     background: string;
