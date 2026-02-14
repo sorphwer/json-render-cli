@@ -1,6 +1,6 @@
 {
   "name": "json-render-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "CLI for rendering JSON UI spec to PNG via json-render and Playwright",
   "main": "dist/index.js",
   "scripts": {
