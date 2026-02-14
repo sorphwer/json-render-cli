@@ -27,6 +27,10 @@ export function ControlMenu({
       return;
     }
 
+    if (panel.scrollHeight <= panel.clientHeight + 1) {
+      return;
+    }
+
     event.stopPropagation();
     event.preventDefault();
 

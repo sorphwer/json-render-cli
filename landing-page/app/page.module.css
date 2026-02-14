@@ -1,18 +1,27 @@
 .page {
   --page-pad-x: clamp(18px, 4vw, 52px);
   --slice-top-offset: 98px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
   position: relative;
-  height: 100svh;
-  padding: 0 var(--page-pad-x);
+  height: 100dvh;
+  min-height: 100svh;
+  padding:
+    0
+    max(var(--page-pad-x), var(--safe-right))
+    var(--safe-bottom)
+    max(var(--page-pad-x), var(--safe-left));
   overflow: hidden;
 }
 
 .header {
   position: absolute;
-  top: 16px;
+  top: calc(var(--safe-top) + 12px);
   left: 50%;
   transform: translateX(-50%);
-  width: min(1260px, calc(100% - (var(--page-pad-x) * 2)));
+  width: min(1260px, 100%);
   z-index: 40;
   display: flex;
   align-items: center;
@@ -49,6 +58,8 @@
 }
 
 .installCommand {
+  display: block;
+  flex: 1;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -115,6 +126,9 @@
   height: 100%;
   overflow-y: auto;
   overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: y proximity;
+  scroll-padding-top: calc(var(--slice-top-offset) + 10px);
   scrollbar-width: none;
 }
 
@@ -133,6 +147,7 @@
   justify-content: center;
   padding-top: var(--slice-top-offset);
   padding-bottom: 10px;
+  scroll-snap-align: start;
 }
 
 .heroSlice {
@@ -619,23 +634,48 @@
 
 @media (max-width: 768px) {
   .page {
-    --slice-top-offset: 132px;
+    --slice-top-offset: 110px;
   }
 
   .header {
-    top: 10px;
-    border-radius: 18px;
-    flex-wrap: wrap;
+    top: calc(var(--safe-top) + 8px);
+    gap: 8px;
+    padding: 8px;
+    border-radius: 999px;
+    flex-wrap: nowrap;
   }
 
   .installBar {
-    width: 100%;
-    order: 1;
+    width: auto;
+    flex: 1;
+    order: 0;
+    height: 36px;
+    gap: 8px;
+    padding: 0 11px;
+  }
+
+  .installLabel {
+    display: none;
+  }
+
+  .installCommand {
+    font-size: 11px;
   }
 
   .headerActions {
-    width: 100%;
+    width: auto;
     justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .copyButton,
+  .sourceButton {
+    min-height: 40px;
+    padding: 0 11px;
+  }
+
+  .sourceText {
+    display: none;
   }
 
   .slice {
@@ -673,13 +713,9 @@
 }
 
 @media (max-width: 480px) {
-  .installLabel {
-    display: none;
-  }
-
   .copyButton,
   .sourceButton {
-    height: 36px;
+    min-height: 40px;
     padding: 0 11px;
   }
 

@@ -27,6 +27,11 @@ body {
   overflow-x: clip;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   font-family: var(--font-sans-alt), sans-serif;
   color: var(--color-ink);
@@ -208,5 +213,11 @@ textarea {
   body::before,
   body::after {
     animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  body::before {
+    opacity: 0.07;
   }
 }
