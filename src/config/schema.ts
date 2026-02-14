@@ -2,12 +2,31 @@ import { z } from "zod";
 
 export const ThemeConfigSchema = z
   .object({
+    mode: z.enum(["light", "dark", "system"]).default("system"),
     fontFamily: z.string().default("ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"),
     textColor: z.string().default("#0f172a"),
     headingColor: z.string().default("#020617"),
     mutedTextColor: z.string().default("#475569"),
     cardBackground: z.string().default("#ffffff"),
     cardBorderColor: z.string().default("#e2e8f0"),
+    dark: z
+      .object({
+        textColor: z.string().default("#e2e8f0"),
+        headingColor: z.string().default("#f8fafc"),
+        mutedTextColor: z.string().default("#94a3b8"),
+        cardBackground: z.string().default("#0f172a"),
+        cardBorderColor: z.string().default("#334155"),
+        canvasBackground: z.string().default("#020617")
+      })
+      .strict()
+      .default({
+        textColor: "#e2e8f0",
+        headingColor: "#f8fafc",
+        mutedTextColor: "#94a3b8",
+        cardBackground: "#0f172a",
+        cardBorderColor: "#334155",
+        canvasBackground: "#020617"
+      }),
     borderRadius: z.number().min(0).max(64).default(16),
     spacing: z.number().min(0).max(64).default(12)
   })
@@ -27,12 +46,21 @@ export const JsonRenderConfigSchema = z
         componentDefaults: {}
       }),
     theme: ThemeConfigSchema.default({
+      mode: "system",
       fontFamily: "ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
       textColor: "#0f172a",
       headingColor: "#020617",
       mutedTextColor: "#475569",
       cardBackground: "#ffffff",
       cardBorderColor: "#e2e8f0",
+      dark: {
+        textColor: "#e2e8f0",
+        headingColor: "#f8fafc",
+        mutedTextColor: "#94a3b8",
+        cardBackground: "#0f172a",
+        cardBorderColor: "#334155",
+        canvasBackground: "#020617"
+      },
       borderRadius: 16,
       spacing: 12
     }),

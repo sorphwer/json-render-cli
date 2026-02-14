@@ -1,0 +1,93 @@
+.root {
+  position: relative;
+  height: 100%;
+}
+
+.scroller {
+  height: 100%;
+}
+
+.rail {
+  position: absolute;
+  top: 50%;
+  right: clamp(4px, 0.9vw, 14px);
+  transform: translateY(-50%);
+  z-index: 30;
+  pointer-events: none;
+}
+
+.railList {
+  list-style: none;
+  margin: 0;
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+}
+
+.railButton {
+  pointer-events: auto;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  width: 30px;
+  height: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 999px;
+}
+
+.railBar {
+  width: 14px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.38);
+  transition: width 180ms ease, background 180ms ease, opacity 180ms ease;
+  opacity: 0.85;
+}
+
+.railButton:hover .railBar {
+  width: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.railButtonActive .railBar {
+  width: 22px;
+  background: var(--color-accent);
+  opacity: 1;
+}
+
+.railButton:focus-visible {
+  outline: 2px solid rgba(0, 112, 201, 0.72);
+  outline-offset: 1px;
+}
+
+@media (max-width: 768px) {
+  .rail {
+    right: 2px;
+  }
+
+  .railList {
+    padding: 7px 4px;
+    gap: 6px;
+  }
+
+  .railButton {
+    width: 24px;
+    height: 9px;
+  }
+
+  .railBar {
+    width: 11px;
+  }
+
+  .railButtonActive .railBar {
+    width: 16px;
+  }
+}

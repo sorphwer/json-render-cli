@@ -20,6 +20,8 @@ describe("config loader", () => {
       expect(config.catalog.allowedComponents).toEqual(["Container", "Text"]);
       expect(config.viewport.width).toBe(1200);
       expect(config.screenshot.type).toBe("png");
+      expect(config.theme.mode).toBe("system");
+      expect(config.theme.dark.canvasBackground).toBe("#020617");
     } finally {
       rmSync(tmpDir, { recursive: true, force: true });
     }
@@ -31,6 +33,19 @@ describe("config loader", () => {
     try {
       const configPath = path.join(tmpDir, "config.json");
       writeFileSync(configPath, JSON.stringify({ catalog: { allowedComponents: ["UnknownComponent"] } }), "utf8");
+
+      expect(() => loadConfig(configPath, ["Container", "Text"])).toThrow(AppError);
+    } finally {
+      rmSync(tmpDir, { recursive: true, force: true });
+    }
+  });
+
+  it("rejects unknown theme mode", () => {
+    const tmpDir = mkdtempSync(path.join(os.tmpdir(), "json-render-config-"));
+
+    try {
+      const configPath = path.join(tmpDir, "config.json");
+      writeFileSync(configPath, JSON.stringify({ theme: { mode: "sepia" } }), "utf8");
 
       expect(() => loadConfig(configPath, ["Container", "Text"])).toThrow(AppError);
     } finally {

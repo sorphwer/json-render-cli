@@ -1,0 +1,4 @@
+interface:
+  display_name: "JSON Render Flow Summary"
+  short_description: "Render timeline and step summaries as images"
+  default_prompt: "Render a compact flow summary image using json-render-cli for ordered stages, timelines, or process status snapshots, with theme.mode defaulting to system."

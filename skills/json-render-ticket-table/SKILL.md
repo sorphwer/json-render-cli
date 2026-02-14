@@ -1,6 +1,7 @@
 ---
 name: json-render-ticket-table
 description: Render compact issue/ticket status tables to PNG images with json-render-cli. Use when users ask to visualize ticket fields (ID, priority, status, assignee, update time, topic) as a clean screenshot with stable column layout.
+user-invocable: false
 ---
 
 # JSON Render Ticket Table
@@ -17,6 +18,11 @@ Keep layout stable so repeated snapshots are visually consistent.
 3. Pass config via process substitution (`-c <(...)`) to avoid temp config files.
 4. Enable `screenshot.fullPage=true` when row count or text wrapping is variable.
 5. Render PNG and return file path (or Base64 only when explicitly requested).
+6. Theme mode is configured with `theme.mode`; keep `system` as default unless a fixed mode is requested.
+
+## Model Routing
+
+- If the current assistant model is high-cost (for example, Opus-class), prefer delegating straightforward ticket-table rendering to a lower-cost fast model (for example, `gemini3flash`). Keep the high-cost model for noisy inputs, schema ambiguity, and higher-level analysis.
 
 ## Build And Render
 
@@ -31,7 +37,7 @@ Default style:
 
 ## Layout Rules
 
-- Keep standard six columns: `ID`, `优先级`, `状态`, `Assignee`, `更新时间`, `主题`.
+- Keep standard six columns: `ID`, `Priority`, `Status`, `Assignee`, `Updated`, `Topic`.
 - Use `Badge` for priority and status.
 - Keep deterministic widths for stable snapshots.
 

@@ -1,0 +1,212 @@
+:root {
+  --vi-black: #000000;
+  --vi-gray: #808080;
+  --vi-white: #ffffff;
+  --vi-blue-dark: #0070c9;
+  --vi-warning-pink: #e83e8c;
+  --color-ink: var(--vi-white);
+  --color-ink-soft: #c7c7c7;
+  --color-accent: var(--vi-blue-dark);
+  --color-warning: var(--vi-warning-pink);
+  --color-border: rgba(255, 255, 255, 0.17);
+  --color-border-strong: rgba(255, 255, 255, 0.28);
+  --color-cloud: rgba(255, 255, 255, 0.06);
+  --shadow-soft: 0 16px 34px rgba(0, 0, 0, 0.45);
+  --shadow-lift: 0 30px 74px rgba(0, 0, 0, 0.58);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
+body {
+  font-family: var(--font-sans-alt), sans-serif;
+  color: var(--color-ink);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% -8%, rgba(255, 255, 255, 0.14), transparent 38%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.74)),
+    var(--vi-gray);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E"),
+    radial-gradient(rgba(255, 255, 255, 0.24) 0.65px, transparent 0.65px);
+  background-size: 140px 140px, 3px 3px;
+  background-position: 0 0, 0 0;
+  opacity: 0.1;
+  animation: grainShift 8s steps(8) infinite;
+}
+
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: -14%;
+  background-image:
+    radial-gradient(
+      circle at var(--glow-blue-x, 84%) var(--glow-blue-y, 14%),
+      rgba(0, 112, 201, 0.26),
+      rgba(0, 112, 201, 0.06) 36%,
+      transparent 68%
+    ),
+    radial-gradient(
+      circle at var(--glow-pink-x, 46%) var(--glow-pink-y, 90%),
+      rgba(232, 62, 140, 0.22),
+      rgba(232, 62, 140, 0.06) 38%,
+      transparent 70%
+    ),
+    radial-gradient(circle at center, transparent 58%, rgba(0, 0, 0, 0.48));
+  animation: glowOrbit 22s linear infinite;
+  will-change: background-image;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@keyframes glowOrbit {
+  0% {
+    --glow-blue-x: 84%;
+    --glow-blue-y: 14%;
+    --glow-pink-x: 46%;
+    --glow-pink-y: 90%;
+  }
+
+  12.5% {
+    --glow-blue-x: 87%;
+    --glow-blue-y: 20%;
+    --glow-pink-x: 52%;
+    --glow-pink-y: 86%;
+  }
+
+  25% {
+    --glow-blue-x: 90%;
+    --glow-blue-y: 28%;
+    --glow-pink-x: 58%;
+    --glow-pink-y: 80%;
+  }
+
+  37.5% {
+    --glow-blue-x: 87%;
+    --glow-blue-y: 36%;
+    --glow-pink-x: 63%;
+    --glow-pink-y: 73%;
+  }
+
+  50% {
+    --glow-blue-x: 82%;
+    --glow-blue-y: 40%;
+    --glow-pink-x: 67%;
+    --glow-pink-y: 68%;
+  }
+
+  62.5% {
+    --glow-blue-x: 76%;
+    --glow-blue-y: 36%;
+    --glow-pink-x: 63%;
+    --glow-pink-y: 72%;
+  }
+
+  75% {
+    --glow-blue-x: 72%;
+    --glow-blue-y: 28%;
+    --glow-pink-x: 56%;
+    --glow-pink-y: 78%;
+  }
+
+  87.5% {
+    --glow-blue-x: 76%;
+    --glow-blue-y: 20%;
+    --glow-pink-x: 50%;
+    --glow-pink-y: 84%;
+  }
+
+  100% {
+    --glow-blue-x: 84%;
+    --glow-blue-y: 14%;
+    --glow-pink-x: 46%;
+    --glow-pink-y: 90%;
+  }
+}
+
+@property --glow-blue-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 84%;
+}
+
+@property --glow-blue-y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 14%;
+}
+
+@property --glow-pink-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 46%;
+}
+
+@property --glow-pink-y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 90%;
+}
+
+@keyframes grainShift {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+
+  25% {
+    background-position: 20px -16px, 0 0;
+  }
+
+  50% {
+    background-position: -12px 14px, 0 0;
+  }
+
+  75% {
+    background-position: 14px 8px, 0 0;
+  }
+
+  100% {
+    background-position: 0 0, 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after {
+    animation: none;
+  }
+}

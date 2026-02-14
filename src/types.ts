@@ -16,13 +16,26 @@ export interface UITreeSpec {
 
 export type MessageSpec = UISpec | UITreeSpec;
 
+export type ThemeMode = "light" | "dark" | "system";
+
+export interface DarkThemeConfig {
+  textColor: string;
+  headingColor: string;
+  mutedTextColor: string;
+  cardBackground: string;
+  cardBorderColor: string;
+  canvasBackground: string;
+}
+
 export interface ThemeConfig {
+  mode: ThemeMode;
   fontFamily: string;
   textColor: string;
   headingColor: string;
   mutedTextColor: string;
   cardBackground: string;
   cardBorderColor: string;
+  dark: DarkThemeConfig;
   borderRadius: number;
   spacing: number;
 }
