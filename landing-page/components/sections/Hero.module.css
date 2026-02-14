@@ -1,5 +1,5 @@
 .hero {
-  max-width: 860px;
+  max-width: 1260px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -31,6 +31,10 @@
   align-items: center;
   gap: 14px;
   flex-wrap: nowrap;
+}
+
+.titleRowWithImage {
+  align-items: center;
 }
 
 .titleLine {
@@ -66,7 +70,7 @@
 
 .anyUiCard {
   position: relative;
-  width: clamp(240px, 54vw, 760px);
+  width: clamp(360px, 81vw, 1140px);
   margin: 0;
   padding: 8px;
   border-radius: 22px;
@@ -160,6 +164,11 @@
     gap: 9px;
   }
 
+  .titleRowWithImage {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
   .titleLine {
     font-size: clamp(1.3rem, 7vw, 1.92rem);
   }
@@ -175,6 +184,11 @@
     border-radius: 16px;
     padding: 6px;
     transform: rotate(-0.25deg);
+  }
+
+  .titleRowWithImage .anyUiCard {
+    flex-basis: 100%;
+    width: clamp(260px, 88vw, 560px);
   }
 
   .anyUiImage {

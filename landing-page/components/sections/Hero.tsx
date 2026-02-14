@@ -7,14 +7,14 @@ export function Hero() {
     <section className={styles.hero}>
       <p className={styles.kicker}>json-render-cli / Skills Runtime</p>
       <h1 className={styles.title}>
-        <span className={styles.titleRow}>
+        <span className={`${styles.titleRow} ${styles.titleRowWithImage}`}>
           <span className={styles.titleLine}>No more</span>
           <code className={styles.asciiDemo} aria-label="ASCII table example">
             {"+------------------+\n|  ASCII table |\n+--------+-------+\n   +-----------+"}
           </code>
           <span className={styles.titleLine}>in your chat,</span>
         </span>
-        <span className={styles.titleRow}>
+        <span className={`${styles.titleRow} ${styles.titleRowWithImage}`}>
           <span className={styles.titleLine}>Agent can reply with</span>
           <figure className={styles.anyUiCard} aria-label="Rendered UI card preview">
             <span className={styles.anyUiGlow} aria-hidden="true" />
