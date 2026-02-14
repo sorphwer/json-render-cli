@@ -3,12 +3,29 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: clamp(465px, 56vh, 590px);
+  overflow-y: auto;
   border: 1px solid var(--color-border-strong);
   border-radius: 22px;
   padding: 18px;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.6));
+  background: linear-gradient(160deg, rgba(12, 12, 12, 0.96), rgba(4, 4, 4, 0.96));
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(10px);
+  scrollbar-width: thin;
+  scrollbar-color: #505050 transparent;
+}
+
+.panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.panel::-webkit-scrollbar-thumb {
+  background: #505050;
+  border-radius: 999px;
+}
+
+.panel::-webkit-scrollbar-thumb:hover {
+  background: #676767;
 }
 
 .group {
@@ -29,7 +46,8 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   padding: 4px;
   border-radius: 12px;
-  background: var(--color-cloud);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
   gap: 4px;
 }
 
@@ -50,9 +68,9 @@
 }
 
 .segmentButtonActive {
-  background: #ffffff;
+  background: var(--color-accent);
   color: var(--color-ink);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(0, 112, 201, 0.95);
 }
 
 .skillList {
@@ -65,7 +83,7 @@
 .skillItem {
   padding: 10px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--color-border);
 }
 
@@ -97,8 +115,9 @@
   color: var(--color-ink-soft);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .panel {
+    height: clamp(430px, 55vh, 540px);
     padding: 16px;
   }
 

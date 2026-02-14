@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const geist = Geist({
   variable: "--font-sans-alt",
   subsets: ["latin"],
   display: "swap"
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
+const geistMono = Geist_Mono({
   variable: "--font-mono-alt",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
   display: "swap"
 });
 
@@ -29,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${spaceGrotesk.variable} ${ibmPlexMono.variable}`}>{children}</body>
+      <body className={`${geist.variable} ${geistMono.variable}`}>{children}</body>
     </html>
   );
 }

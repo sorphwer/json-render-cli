@@ -1,0 +1,125 @@
+{
+  "root": {
+    "type": "Row",
+    "props": {
+      "width": "100%",
+      "height": "100%",
+      "gap": 0,
+      "style": {
+        "overflow": "hidden",
+        "borderRadius": 14,
+        "background": "#000428"
+      }
+    },
+    "children": [
+      {
+        "type": "Card",
+        "props": {
+          "width": "25%",
+          "height": "100%",
+          "padding": 0,
+          "borderRadius": 0,
+          "borderColor": "#22316f",
+          "background": "#00083f",
+          "style": {
+            "display": "flex",
+            "alignItems": "center",
+            "justifyContent": "center"
+          }
+        },
+        "children": [
+          {
+            "type": "Heading",
+            "props": {
+              "text": "Any",
+              "size": 122,
+              "align": "center",
+              "color": "#f3f4f6"
+            }
+          }
+        ]
+      },
+      {
+        "type": "Card",
+        "props": {
+          "width": "25%",
+          "height": "100%",
+          "padding": 0,
+          "borderRadius": 0,
+          "borderColor": "#22316f",
+          "background": "#00083f",
+          "style": {
+            "display": "flex",
+            "alignItems": "center",
+            "justifyContent": "center"
+          }
+        },
+        "children": [
+          {
+            "type": "Heading",
+            "props": {
+              "text": "UI",
+              "size": 122,
+              "align": "center",
+              "color": "#f3f4f6"
+            }
+          }
+        ]
+      },
+      {
+        "type": "Card",
+        "props": {
+          "width": "25%",
+          "height": "100%",
+          "padding": 0,
+          "borderRadius": 0,
+          "borderColor": "#22316f",
+          "background": "#00083f",
+          "style": {
+            "display": "flex",
+            "alignItems": "center",
+            "justifyContent": "center"
+          }
+        },
+        "children": [
+          {
+            "type": "Heading",
+            "props": {
+              "text": "You",
+              "size": 122,
+              "align": "center",
+              "color": "#f3f4f6"
+            }
+          }
+        ]
+      },
+      {
+        "type": "Card",
+        "props": {
+          "width": "25%",
+          "height": "100%",
+          "padding": 0,
+          "borderRadius": 0,
+          "borderColor": "#22316f",
+          "background": "#00083f",
+          "style": {
+            "display": "flex",
+            "alignItems": "center",
+            "justifyContent": "center"
+          }
+        },
+        "children": [
+          {
+            "type": "Heading",
+            "props": {
+              "text": "Want",
+              "size": 122,
+              "align": "center",
+              "color": "#f3f4f6"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

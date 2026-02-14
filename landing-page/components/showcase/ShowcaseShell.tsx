@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { buildAgentReply } from "@/lib/agent-replies";
 import { DEFAULT_ENABLED_SKILLS, PROMPTS, SKILLS } from "@/lib/showcase-data";
 import { buildPromptPool, pickRandomPrompt } from "@/lib/random-prompt";
 import type { ChatMessage, ImageMode, PromptDef, SkillDef, SkillId } from "@/lib/showcase-types";
@@ -30,12 +31,27 @@ const SKILLS_BY_ID: Record<SkillId, SkillDef> = SKILLS.reduce(
 
 export function ShowcaseShell() {
   const [enabledSkills, setEnabledSkills] = useState<Record<SkillId, boolean>>(DEFAULT_ENABLED_SKILLS);
-  const [imageMode, setImageMode] = useState<ImageMode>("light");
+  const [imageMode, setImageMode] = useState<ImageMode>("dark");
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: createId(),
+      role: "user",
+      text: "Please install: npm i -g json-render-cli && npx playwright install chromium"
+    },
+    {
+      id: createId(),
       role: "agent",
-      text: "Toggle skills, then press Send. This demo simulates an agent response with pre-rendered images."
+      text: "Done. json-render-cli and Chromium dependencies are installed."
+    },
+    {
+      id: createId(),
+      role: "user",
+      text: "Next, install the bundled skills from node_modules."
+    },
+    {
+      id: createId(),
+      role: "agent",
+      text: "Done. The bundled skills from node_modules are installed. I can now render images for you to replace the original ASCII wireframes."
     }
   ]);
   const [currentPrompt, setCurrentPrompt] = useState<PromptDef | null>(INITIAL_PROMPT);
@@ -44,12 +60,17 @@ export function ShowcaseShell() {
   const promptPool = useMemo(() => buildPromptPool(PROMPTS, enabledSkills), [enabledSkills]);
 
   const enabledSkillsRef = useRef(enabledSkills);
+  const imageModeRef = useRef(imageMode);
   const lastSentPromptIdRef = useRef<string | undefined>(undefined);
   const timeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     enabledSkillsRef.current = enabledSkills;
   }, [enabledSkills]);
+
+  useEffect(() => {
+    imageModeRef.current = imageMode;
+  }, [imageMode]);
 
   useEffect(() => {
     return () => {
@@ -121,7 +142,9 @@ export function ShowcaseShell() {
             id: createId(),
             role: "agent",
             promptId: currentPrompt.id,
-            skillId: currentPrompt.skillId
+            skillId: currentPrompt.skillId,
+            text: buildAgentReply(currentPrompt),
+            imageMode: imageModeRef.current
           };
         })
       );
@@ -143,7 +166,6 @@ export function ShowcaseShell() {
         currentPromptText={currentPromptText}
         canSend={canSend}
         isSending={isSending}
-        imageMode={imageMode}
         skillsById={SKILLS_BY_ID}
         onSend={handleSend}
       />

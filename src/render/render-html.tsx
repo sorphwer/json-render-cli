@@ -48,6 +48,11 @@ export function renderHtml(spec: UISpec, config: JsonRenderConfig): string {
     </JSONUIProvider>
   );
 
+  const usesAdaptiveHeight = config.screenshot.fullPage;
+  const rootHeight = usesAdaptiveHeight ? "auto" : "100%";
+  const appHeight = usesAdaptiveHeight ? "auto" : "100%";
+  const appMinHeight = usesAdaptiveHeight ? "0" : "100%";
+
   const css = `
     :root {
       --jr-font-family: ${escapeCss(config.theme.fontFamily)};
@@ -69,7 +74,7 @@ export function renderHtml(spec: UISpec, config: JsonRenderConfig): string {
     body {
       margin: 0;
       width: 100%;
-      height: 100%;
+      height: ${rootHeight};
       font-family: var(--jr-font-family);
       color: var(--jr-text);
       background: var(--jr-canvas-bg);
@@ -77,7 +82,8 @@ export function renderHtml(spec: UISpec, config: JsonRenderConfig): string {
 
     #app {
       width: 100%;
-      height: 100%;
+      min-height: ${appMinHeight};
+      height: ${appHeight};
       padding: ${config.canvas.padding}px;
       display: flex;
       flex-direction: column;

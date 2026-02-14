@@ -1,13 +1,14 @@
 .section {
   display: grid;
-  gap: 22px;
+  gap: 16px;
   margin-top: 28px;
   animation: rise 700ms ease both;
 }
 
 .head {
   display: grid;
-  gap: 10px;
+  gap: 8px;
+  max-width: 900px;
 }
 
 .kicker {
@@ -19,56 +20,239 @@
 }
 
 .title {
-  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
-  line-height: 1.18;
+  font-size: clamp(1.5rem, 3.1vw, 2.28rem);
+  line-height: 1.14;
   letter-spacing: -0.02em;
   color: var(--color-ink);
 }
 
-.grid {
+.subtitle {
+  max-width: 64ch;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+.subtitle :global(strong),
+.subtitle :global(u) {
+  color: #ffffff;
+}
+
+.subtitle :global(u) {
+  text-decoration-color: #ffffff;
+}
+
+.stack {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  border: 1px solid var(--color-border-strong);
-  border-radius: 16px;
+.stepCard {
+  position: relative;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   padding: 14px;
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.55));
-  box-shadow: var(--shadow-soft);
+  background:
+    radial-gradient(circle at 15% 12%, rgba(255, 255, 255, 0.12), transparent 45%),
+    linear-gradient(162deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)),
+    rgba(0, 0, 0, 0.72);
+  box-shadow:
+    0 24px 44px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(14px);
 }
 
-.cardId {
+.chatStep {
+  border-color: rgba(128, 128, 128, 0.54);
+}
+
+.jsonStep {
+  border-color: rgba(0, 112, 201, 0.42);
+}
+
+.cliStep {
+  border-color: rgba(232, 62, 140, 0.44);
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stepIndex {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--font-mono-alt);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-ink);
+  border: 1px solid rgba(128, 128, 128, 0.72);
+  background: rgba(0, 0, 0, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.stepMeta {
+  display: grid;
+  gap: 3px;
+}
+
+.stepKicker {
   font-family: var(--font-mono-alt);
   font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
   color: var(--color-ink-soft);
-  line-height: 1.45;
 }
 
-.cardTitle {
-  font-size: 16px;
-  line-height: 1.25;
+.stepTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 17px;
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
 }
 
-.cardDescription {
-  color: var(--color-ink-soft);
+.stepIcon {
+  width: 15px;
+  height: 15px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.stepNote {
+  margin: 10px 0 0;
   font-size: 13px;
-  line-height: 1.55;
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.innerCard {
+  margin-top: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    rgba(0, 0, 0, 0.66);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  padding: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.chatCard {
+  display: grid;
+  gap: 8px;
+}
+
+.chatBubble {
+  margin: 0;
+  padding: 9px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.chatUser {
+  border: 1px solid rgba(0, 112, 201, 0.48);
+  background: rgba(0, 112, 201, 0.2);
+  color: var(--color-ink);
+}
+
+.chatAgent {
+  border: 1px solid rgba(232, 62, 140, 0.5);
+  background: rgba(232, 62, 140, 0.18);
+  color: var(--color-ink);
+}
+
+.jsonCode {
+  margin: 0;
+  overflow: hidden;
+  white-space: pre-wrap;
+  font-family: var(--font-mono-alt);
+  font-size: 11px;
+  line-height: 1.58;
+  color: var(--color-ink);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cliCard {
+  min-height: 108px;
+  display: grid;
+  gap: 10px;
+  align-content: center;
+}
+
+.command {
+  margin: 0;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  white-space: pre-wrap;
+  font-family: var(--font-mono-alt);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--color-ink);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.outputPath {
+  margin: 0;
+  font-family: var(--font-mono-alt);
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--color-accent);
+  opacity: 0.92;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 @media (max-width: 1080px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .stack {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
+  .title {
+    font-size: clamp(1.28rem, 6.2vw, 1.86rem);
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .stepCard {
+    border-radius: 18px;
+    padding: 12px;
+  }
+
+  .innerCard {
+    border-radius: 14px;
+    padding: 10px;
+  }
+
+  .stepTitle {
+    font-size: 15px;
+  }
+
+  .jsonCode {
+    font-size: 10px;
+  }
+
+  .command {
+    font-size: 11px;
   }
 }
 

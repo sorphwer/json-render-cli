@@ -1,6 +1,14 @@
 # json-render-cli
 
-Node.js CLI that renders a JSON UI spec into a PNG image using `@json-render/react` + Playwright headless Chromium.
+Token-efficient Node.js CLI that renders a JSON UI spec into a PNG image using `@json-render/react` + Playwright headless Chromium.
+
+## Why this CLI
+
+Use this when you want image output with lower prompt overhead than hand-written HTML/CSS:
+
+- One JSON spec in, one PNG out.
+- Less token usage than generating full HTML/CSS for simple visual artifacts.
+- More deterministic structure for repeated snapshots (tables, cards, flow summaries).
 
 ## Install
 

@@ -20,6 +20,10 @@ Keep layout stable so repeated snapshots are visually consistent.
 5. Render PNG and return file path (or Base64 only when explicitly requested).
 6. Theme mode is configured with `theme.mode`; keep `system` as default unless a fixed mode is requested.
 
+## Model Routing
+
+- If the current assistant model is high-cost (for example, Opus-class), prefer delegating straightforward ticket-table rendering to a lower-cost fast model (for example, `gemini3flash`). Keep the high-cost model for noisy inputs, schema ambiguity, and higher-level analysis.
+
 ## Build And Render
 
 Use `references/compact-ticket-template.md`.

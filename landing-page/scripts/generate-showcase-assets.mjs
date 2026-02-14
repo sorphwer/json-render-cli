@@ -77,13 +77,13 @@ function getConfig(mode) {
     },
     viewport: {
       width: 1100,
-      height: 620,
+      height: 120,
       deviceScaleFactor: 2
     },
     screenshot: {
       type: "png",
       omitBackground: false,
-      fullPage: false
+      fullPage: true
     },
     canvas: {
       background: isDark ? "#0b1220" : "#edf2f7",
@@ -92,15 +92,12 @@ function getConfig(mode) {
   };
 }
 
-function tableMessage(mode) {
-  const modeLabel = mode === "dark" ? "DARK" : "LIGHT";
-
+function tableMessage() {
   return {
     root: {
       type: "Column",
       props: {
         width: "100%",
-        height: "100%",
         gap: 14
       },
       children: [
@@ -117,14 +114,6 @@ function tableMessage(mode) {
                 text: "Generic Data Table",
                 level: 2,
                 size: 34
-              }
-            },
-            {
-              type: "Badge",
-              props: {
-                text: `${modeLabel} MODE`,
-                background: "#dbeafe",
-                color: "#1d4ed8"
               }
             }
           ]
@@ -215,15 +204,12 @@ function tableMessage(mode) {
   };
 }
 
-function ticketTableMessage(mode) {
-  const modeLabel = mode === "dark" ? "DARK" : "LIGHT";
-
+function ticketTableMessage() {
   return {
     root: {
       type: "Column",
       props: {
         width: "100%",
-        height: "100%",
         gap: 12
       },
       children: [
@@ -240,14 +226,6 @@ function ticketTableMessage(mode) {
                 text: "Ticket Status Snapshot",
                 level: 2,
                 size: 34
-              }
-            },
-            {
-              type: "Badge",
-              props: {
-                text: `${modeLabel} MODE`,
-                background: "#dbeafe",
-                color: "#1d4ed8"
               }
             }
           ]
@@ -366,15 +344,12 @@ function ticketTableMessage(mode) {
   };
 }
 
-function infoCardsMessage(mode) {
-  const modeLabel = mode === "dark" ? "DARK" : "LIGHT";
-
+function infoCardsMessage() {
   return {
     root: {
       type: "Column",
       props: {
         width: "100%",
-        height: "100%",
         gap: 14
       },
       children: [
@@ -391,14 +366,6 @@ function infoCardsMessage(mode) {
                 text: "KPI Overview Cards",
                 level: 2,
                 size: 34
-              }
-            },
-            {
-              type: "Badge",
-              props: {
-                text: `${modeLabel} MODE`,
-                background: "#dbeafe",
-                color: "#1d4ed8"
               }
             }
           ]
@@ -444,16 +411,13 @@ function infoCardsMessage(mode) {
   };
 }
 
-function announcementCardsMessage(mode) {
-  const modeLabel = mode === "dark" ? "DARK" : "LIGHT";
-
+function announcementCardsMessage() {
   return {
     root: {
       type: "Column",
       props: {
         width: "100%",
-        height: "100%",
-        justify: "space-between"
+        gap: 12
       },
       children: [
         {
@@ -463,8 +427,7 @@ function announcementCardsMessage(mode) {
             borderColor: "transparent",
             color: "#ffffff",
             gap: 10,
-            padding: 24,
-            height: "72%"
+            padding: 24
           },
           children: [
             {
@@ -478,14 +441,6 @@ function announcementCardsMessage(mode) {
                   type: "Badge",
                   props: {
                     text: "Launch Week",
-                    background: "rgba(255,255,255,0.2)",
-                    color: "#ffffff"
-                  }
-                },
-                {
-                  type: "Badge",
-                  props: {
-                    text: `${modeLabel} MODE`,
                     background: "rgba(255,255,255,0.2)",
                     color: "#ffffff"
                   }
@@ -535,15 +490,12 @@ function announcementCardsMessage(mode) {
   };
 }
 
-function flowSummaryMessage(mode) {
-  const modeLabel = mode === "dark" ? "DARK" : "LIGHT";
-
+function flowSummaryMessage() {
   return {
     root: {
       type: "Column",
       props: {
         width: "100%",
-        height: "100%",
         gap: 12
       },
       children: [
@@ -560,14 +512,6 @@ function flowSummaryMessage(mode) {
                 text: "Flow Timeline Summary",
                 level: 2,
                 size: 34
-              }
-            },
-            {
-              type: "Badge",
-              props: {
-                text: `${modeLabel} MODE`,
-                background: "#dbeafe",
-                color: "#1d4ed8"
               }
             }
           ]
@@ -645,9 +589,7 @@ function renderAsset({ mode, skillId, configPath, outputPath }) {
     "-c",
     configPath,
     "-o",
-    outputPath,
-    "--size",
-    "1100x620"
+    outputPath
   ];
 
   const result = spawnSync(process.execPath, args, {

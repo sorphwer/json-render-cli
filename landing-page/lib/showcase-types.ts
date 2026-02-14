@@ -26,4 +26,6 @@ export interface ChatMessage {
   promptId?: string;
   skillId?: SkillId;
   text?: string;
+  /** The image mode snapshot when this message was created */
+  imageMode?: ImageMode;
 }

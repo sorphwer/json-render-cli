@@ -62,76 +62,76 @@ export const PROMPTS: PromptDef[] = [
   {
     id: "table-1",
     skillId: "json-render-table",
-    text: "Render this partner metrics sheet into a compact table PNG with fixed column widths and edge-to-edge framing."
+    text: "Please render this regional revenue sheet as a compact table PNG with Region, Revenue, QoQ, Owner, and Health columns."
   },
   {
     id: "table-2",
     skillId: "json-render-table",
-    text: "Build a generic table snapshot for quarterly revenue rows, with clear headers and status badges."
+    text: "Make a clean table snapshot for North America ($2.4M), EMEA ($1.6M), and APAC ($1.1M) with QoQ and health badges."
   },
   {
     id: "table-3",
     skillId: "json-render-table",
-    text: "Turn the attached benchmark rows into a clean table screenshot optimized for Slack updates."
+    text: "Turn this partner revenue update into a fixed-width table image where health stays readable as Strong/Watch badges."
   },
   {
     id: "ticket-1",
     skillId: "json-render-ticket-table",
-    text: "Generate a ticket status table image with ID, priority, status, assignee, updated time, and topic columns."
+    text: "Render a ticket status table with ID, Priority, Status, Assignee, Updated, and Topic columns for INC-412 to INC-414."
   },
   {
     id: "ticket-2",
     skillId: "json-render-ticket-table",
-    text: "Create a compact incident board snapshot from these 12 tickets, keeping the topic column readable."
+    text: "Create a compact incident snapshot showing INC-412 (Blocked), INC-413 (In Progress), and INC-414 (Done)."
   },
   {
     id: "ticket-3",
     skillId: "json-render-ticket-table",
-    text: "Render a release bug triage table PNG with deterministic widths for daily standup diffs."
+    text: "Build a triage table PNG for Luna, Diego, and Ari with deterministic widths so the topic column stays legible."
   },
   {
     id: "info-1",
     skillId: "json-render-info-cards",
-    text: "Produce a KPI overview card set for ARR, churn, NPS, and activation rate in one concise image."
+    text: "Generate a KPI overview card image for Monthly ARR, Activation, and Churn in one concise row."
   },
   {
     id: "info-2",
     skillId: "json-render-info-cards",
-    text: "Create a daily summary card image with headline metric, deltas, and three key takeaways."
+    text: "Create a compact KPI card set with $4.8M ARR, 68.2% Activation, and 1.9% Churn plus delta badges."
   },
   {
     id: "info-3",
     skillId: "json-render-info-cards",
-    text: "Render a side-by-side metric comparison card for Team A vs Team B performance this week."
+    text: "Render a single-row KPI snapshot with three cards and clear positive/negative deltas for quick updates."
   },
   {
     id: "announce-1",
     skillId: "json-render-announcement-cards",
-    text: "Generate a launch announcement hero card with bold headline, short body copy, and a single CTA."
+    text: "Generate a launch-week announcement hero card with a bold headline, short body copy, and a \"Try the Showcase\" CTA."
   },
   {
     id: "announce-2",
     skillId: "json-render-announcement-cards",
-    text: "Build a feature release promo card PNG for social sharing with a clean visual hierarchy."
+    text: "Build a release promo card PNG that says \"New Skills for json-render-cli\" with one clear button and strong hierarchy."
   },
   {
     id: "announce-3",
     skillId: "json-render-announcement-cards",
-    text: "Create a profile spotlight announcement card for our new maintainer with one focal badge."
+    text: "Create a gradient announcement card with a Launch Week badge, one headline block, and concise supporting copy."
   },
   {
     id: "flow-1",
     skillId: "json-render-flow-summary",
-    text: "Render a delivery pipeline timeline with DONE, IN PROGRESS, and BLOCKED stages in a single image."
+    text: "Render a three-stage flow summary image with DONE, IN PROGRESS, and BLOCKED states."
   },
   {
     id: "flow-2",
     skillId: "json-render-flow-summary",
-    text: "Generate a weekly project flow summary card showing stage owners and target dates."
+    text: "Generate a timeline snapshot with Detect, Mitigate, and Review cards to show current stage progress."
   },
   {
     id: "flow-3",
     skillId: "json-render-flow-summary",
-    text: "Create an incident lifecycle snapshot image from detection to mitigation to postmortem."
+    text: "Create an incident lifecycle summary from detection to mitigation to review with clear stage status badges."
   }
 ];

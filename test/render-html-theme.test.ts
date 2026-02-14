@@ -20,7 +20,10 @@ function makeSpec(): UISpec {
   };
 }
 
-function makeConfig(mode: "light" | "dark" | "system"): JsonRenderConfig {
+function makeConfig(
+  mode: "light" | "dark" | "system",
+  options?: { fullPage?: boolean }
+): JsonRenderConfig {
   return {
     version: 1,
     catalog: {
@@ -54,7 +57,7 @@ function makeConfig(mode: "light" | "dark" | "system"): JsonRenderConfig {
     screenshot: {
       type: "png",
       omitBackground: false,
-      fullPage: false
+      fullPage: options?.fullPage ?? false
     },
     canvas: {
       background: "#f8fafc",
@@ -86,5 +89,12 @@ describe("renderHtml theme mode", () => {
     expect(html).toContain("color-scheme: light");
     expect(html).not.toContain("@media (prefers-color-scheme: dark)");
     expect(html).toContain("--jr-canvas-bg: #f8fafc;");
+  });
+
+  it("uses adaptive height layout when screenshot.fullPage is true", () => {
+    const html = renderHtml(makeSpec(), makeConfig("light", { fullPage: true }));
+
+    expect(html).toContain("height: auto;");
+    expect(html).toContain("min-height: 0;");
   });
 });

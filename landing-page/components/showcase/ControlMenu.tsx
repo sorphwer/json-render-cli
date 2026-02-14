@@ -1,3 +1,6 @@
+import { useRef } from "react";
+import type { WheelEvent as ReactWheelEvent } from "react";
+
 import type { ImageMode, SkillDef, SkillId } from "@/lib/showcase-types";
 import styles from "./ControlMenu.module.css";
 
@@ -16,8 +19,35 @@ export function ControlMenu({
   imageMode,
   onChangeImageMode
 }: ControlMenuProps) {
+  const panelRef = useRef<HTMLElement>(null);
+
+  const handlePanelWheelCapture = (event: ReactWheelEvent<HTMLElement>) => {
+    const panel = panelRef.current;
+    if (!panel || event.ctrlKey) {
+      return;
+    }
+
+    event.stopPropagation();
+    event.preventDefault();
+
+    let deltaY = event.deltaY;
+    if (event.deltaMode === 1) {
+      deltaY *= 16;
+    } else if (event.deltaMode === 2) {
+      deltaY *= panel.clientHeight;
+    }
+
+    panel.scrollTop += deltaY;
+  };
+
   return (
-    <aside className={styles.panel} aria-label="Showcase controls">
+    <aside
+      ref={panelRef}
+      className={styles.panel}
+      aria-label="Showcase controls"
+      onWheelCapture={handlePanelWheelCapture}
+      data-wheel-scope="control"
+    >
       <div className={styles.group}>
         <p className={styles.groupLabel}>Image Mode</p>
         <div className={styles.segmented} role="radiogroup" aria-label="Image mode">

@@ -21,6 +21,10 @@ Use this skill for non-ticket table use cases.
 6. Render PNG and return output path (or Base64 only when explicitly requested).
 7. Theme mode is configured with `theme.mode`; use `system` by default, or force `light` / `dark` when needed.
 
+## Model Routing
+
+- If the current assistant model is high-cost (for example, Opus-class), route simple, deterministic table rendering to a lower-cost fast model (for example, `gemini3flash`) and keep the expensive model for ambiguous reasoning or design tasks.
+
 ## Use Case Selection
 
 - Generic table: use `references/compact-table-template.md`.
