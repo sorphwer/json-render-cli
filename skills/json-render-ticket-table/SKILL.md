@@ -1,6 +1,7 @@
 ---
 name: json-render-ticket-table
 description: Render compact issue/ticket status tables to PNG images with json-render-cli. Use when users ask to visualize ticket fields (ID, priority, status, assignee, update time, topic) as a clean screenshot with stable column layout.
+user-invocable: false
 ---
 
 # JSON Render Ticket Table

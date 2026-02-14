@@ -1,6 +1,7 @@
 ---
 name: json-render-flow-summary
 description: Render flow and timeline summary visuals to PNG images with json-render-cli. Use when users ask to present steps, stage progress, lifecycle snapshots, or timeline summaries.
+user-invocable: false
 ---
 
 # JSON Render Flow Summary

@@ -1,6 +1,7 @@
 ---
 name: json-render-table
 description: Render compact generic data tables to PNG images with json-render-cli. Use when users ask to visualize arbitrary structured rows/columns (non-ticket-specific) as clean table screenshots with controllable layout.
+user-invocable: false
 ---
 
 # JSON Render Table

@@ -1,6 +1,7 @@
 ---
 name: json-render-announcement-cards
 description: Render announcement-style cards to PNG images with json-render-cli. Use when users ask for hero banners, release announcements, profile highlights, or promotional card visuals.
+user-invocable: false
 ---
 
 # JSON Render Announcement Cards

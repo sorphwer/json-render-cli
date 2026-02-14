@@ -1,6 +1,7 @@
 ---
 name: json-render-info-cards
 description: Render compact information cards to PNG images with json-render-cli. Use when users ask for KPI snapshots, metric comparisons, or daily summary cards (non-table layouts).
+user-invocable: false
 ---
 
 # JSON Render Info Cards
