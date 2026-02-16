@@ -10,6 +10,7 @@
     "generate:showcase-assets": "node scripts/generate-showcase-assets.mjs"
   },
   "dependencies": {
+    "lenis": "^1.3.17",
     "lucide-react": "^0.564.0",
     "next": "16.1.6",
     "react": "19.2.3",

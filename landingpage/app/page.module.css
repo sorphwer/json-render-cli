@@ -34,6 +34,8 @@
   border: 1px solid var(--color-border-strong);
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(14px);
+  will-change: transform;
+  contain: layout style paint;
 }
 
 .installBar {
@@ -132,7 +134,6 @@
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y pinch-zoom;
-  scroll-snap-type: y proximity;
   scroll-padding-top: calc(var(--slice-top-offset) + 10px);
   scrollbar-width: none;
 }
@@ -152,7 +153,6 @@
   justify-content: center;
   padding-top: var(--slice-top-offset);
   padding-bottom: 10px;
-  scroll-snap-align: start;
 }
 
 .heroSlice {
