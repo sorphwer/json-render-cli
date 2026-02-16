@@ -12,7 +12,7 @@ const LOBE_ICON_CDN = "https://unpkg.com/@lobehub/icons-static-svg@latest/icons"
 const SIMPLE_ICON_CDN = "https://cdn.simpleicons.org";
 const GITHUB_URL = "https://github.com/sorphwer/json-render-cli";
 const INSTALL_COMMAND =
-  "node <(curl -fsSL https://raw.githubusercontent.com/sorphwer/json-render-cli/main/scripts/install-skills.mjs) --all";
+  "curl -fsSL https://raw.githubusercontent.com/sorphwer/json-render-cli/main/scripts/install.sh | bash";
 const AGENT_STEPS = [
   {
     title: "Run the skill installer",
