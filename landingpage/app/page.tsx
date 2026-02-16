@@ -14,19 +14,19 @@ const GITHUB_URL = "https://github.com/sorphwer/json-render-cli";
 const SKILLS_PATH_URL = `${GITHUB_URL}/tree/main/npm/skills`;
 const VERCEL_CONFIG_URL = `${GITHUB_URL}/blob/main/vercel.json`;
 const INSTALL_COMMAND =
-  "npm i -g json-render-cli && npx playwright install chromium && scripts/install-skill-from-github.py --repo sorphwer/json-render-cli --path npm/skills/json-render-table";
+  "scripts/install-skill-from-github.py --repo sorphwer/json-render-cli --path npm/skills/json-render-table --path npm/skills/json-render-ticket-table --path npm/skills/json-render-info-cards --path npm/skills/json-render-announcement-cards --path npm/skills/json-render-flow-summary";
 const AGENT_STEPS = [
   {
-    title: "Install runtime first",
-    detail: "Install json-render-cli and Chromium runtime once."
-  },
-  {
     title: "Install skills from GitHub paths",
-    detail: "Install from sorphwer/json-render-cli under npm/skills/<skill-name>."
+    detail: "Install from sorphwer/json-render-cli under npm/skills/*."
   },
   {
     title: "Chat with Agent using installed skills",
-    detail: "Request image rendering directly without landingpage runtime dependency."
+    detail: "Request image rendering directly; skills will bootstrap runtime if needed."
+  },
+  {
+    title: "Render and iterate",
+    detail: "Use compact templates and get PNG output in one prompt."
   }
 ];
 
@@ -63,7 +63,7 @@ export default function Home() {
     <div className={styles.page}>
       <header className={styles.header}>
         <div className={styles.installBar}>
-          <span className={styles.installLabel}>Install</span>
+          <span className={styles.installLabel}>Install Skills</span>
           <code className={styles.installCommand}>{INSTALL_COMMAND}</code>
         </div>
 
@@ -180,7 +180,8 @@ export default function Home() {
                   Install skills directly from this repo and start rendering in chat.
                 </h2>
                 <p className={styles.starDescription}>
-                  For skill usage, you only need runtime + skill installation. The landing page is optional and separate.
+                  For skill usage, install skills only. Runtime setup is handled by the skills when needed, and the
+                  landing page remains optional.
                 </p>
                 <div className={styles.starActions}>
                   <a

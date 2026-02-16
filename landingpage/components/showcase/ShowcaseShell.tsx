@@ -36,22 +36,12 @@ export function ShowcaseShell() {
     {
       id: createId(),
       role: "user",
-      text: "Please install: npm i -g json-render-cli && npx playwright install chromium"
+      text: "Please install skills from GitHub path: sorphwer/json-render-cli -> npm/skills/*"
     },
     {
       id: createId(),
       role: "agent",
-      text: "Done. Runtime is ready."
-    },
-    {
-      id: createId(),
-      role: "user",
-      text: "Next, install skill from GitHub path: sorphwer/json-render-cli -> npm/skills/json-render-table"
-    },
-    {
-      id: createId(),
-      role: "agent",
-      text: "Done. The skill is installed from npm/skills. I can now render images for you to replace ASCII wireframes."
+      text: "Done. Skills are installed from npm/skills. Runtime will be bootstrapped automatically when rendering."
     }
   ]);
   const [currentPrompt, setCurrentPrompt] = useState<PromptDef | null>(INITIAL_PROMPT);
