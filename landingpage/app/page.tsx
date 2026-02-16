@@ -13,6 +13,9 @@ const SIMPLE_ICON_CDN = "https://cdn.simpleicons.org";
 const GITHUB_URL = "https://github.com/sorphwer/json-render-cli";
 const INSTALL_COMMAND =
   "curl -fsSL https://raw.githubusercontent.com/sorphwer/json-render-cli/main/scripts/install.sh | bash";
+const AGENT_INSTALL_HINT_PREFIX = "or";
+const AGENT_INSTALL_HINT =
+  " tell your agent: install skills from sorphwer/json-render-cli.git";
 const AGENT_STEPS = [
   {
     title: "Run the skill installer",
@@ -59,9 +62,24 @@ const compatibleTools = [
 export default function Home() {
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
+      <svg width="0" height="0" style={{ position: "absolute", left: "-9999px", top: "-9999px" }} aria-hidden="true">
+        <defs>
+          <filter id="liquid-glass">
+            <feTurbulence type="fractalNoise" baseFrequency="0.003" numOctaves="2" seed="7" result="noise" />
+            <feGaussianBlur in="noise" stdDeviation="1.5" result="map" />
+            <feDisplacementMap in="SourceGraphic" in2="map" scale="80" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
+      </svg>
+      <header
+        className={styles.header}
+        style={{ backdropFilter: "url(#liquid-glass) blur(2px) saturate(1.8) brightness(1.1)", WebkitBackdropFilter: "blur(14px) saturate(1.8) brightness(1.1)" }}
+      >
         <div className={styles.installBar}>
           <code className={styles.installCommand}>{INSTALL_COMMAND}</code>
+          <span className={styles.installAgent}>
+            <span className={styles.installOr}>{AGENT_INSTALL_HINT_PREFIX}</span>{AGENT_INSTALL_HINT}
+          </span>
         </div>
 
         <div className={styles.headerActions}>

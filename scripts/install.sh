@@ -14,4 +14,11 @@ TMPFILE="$(mktemp /tmp/install-skills.XXXXXX.mjs)"
 trap 'rm -f "$TMPFILE"' EXIT
 
 curl -fsSL "$SCRIPT_URL" -o "$TMPFILE"
-node "$TMPFILE" "$@"
+
+# Reconnect stdin to the terminal so the Node script can prompt
+# interactively even when this shell script is piped via curl | bash.
+if [ -t 0 ]; then
+  node "$TMPFILE" "$@"
+else
+  node "$TMPFILE" "$@" </dev/tty
+fi
