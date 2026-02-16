@@ -19,7 +19,7 @@ Use this skill for snapshot-style KPI and summary visuals.
 
 ## Workflow
 
-1. Ensure `json-render-cli` is built.
+1. Ensure `json-render` is available. If missing, run `npm i -g json-render-cli`; if Chromium is missing, run `npx playwright install chromium`.
 2. Select the closest reference template.
 3. Fill template placeholders with dataset-specific values.
 4. Build message JSON in memory from placeholder substitutions.

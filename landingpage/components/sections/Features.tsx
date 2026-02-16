@@ -2,7 +2,7 @@ import { Braces, MessageSquareText, Terminal } from "lucide-react";
 
 import styles from "./Features.module.css";
 
-const OUTPUT_PATH = "landing-page/public/showcase/dark/any-ui-you-want-1x4-tight-half.png";
+const OUTPUT_PATH = "landingpage/public/showcase/dark/any-ui-you-want-1x4-tight-half.png";
 const CHAT_PROMPT = 'Render "Any UI You Want" as a dark four-column PNG card.';
 const AGENT_REPLY = "I will create the JSON spec first, then run one CLI command.";
 

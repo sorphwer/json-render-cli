@@ -13,7 +13,7 @@ Use this skill for non-ticket table use cases.
 
 ## Workflow
 
-1. Ensure `json-render-cli` is built.
+1. Ensure `json-render` is available. If missing, run `npm i -g json-render-cli`; if Chromium is missing, run `npx playwright install chromium`.
 2. Define target columns and row schema for the current dataset.
 3. Generate message JSON in memory from the table template.
 4. Pass config via process substitution (`-c <(...)`) to avoid temporary config files.

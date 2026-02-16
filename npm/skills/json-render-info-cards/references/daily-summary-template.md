@@ -13,7 +13,27 @@ export SUMMARY="Traffic increased 6.3% day-over-day with stable latency. Error v
 export UPDATED_AT="Tue 18:10"
 export OUT_PATH="${OUT_PATH:-/tmp/daily-summary.png}"
 
-export SPEC_PATH="${SPEC_PATH:-/Users/sorphwer/repos/json-render-cli/skills/json-render-info-cards/references/daily-summary-spec.template.json}"
+if ! command -v json-render >/dev/null 2>&1; then
+  npm i -g json-render-cli
+fi
+export JSON_RENDER_CMD="${JSON_RENDER_CMD:-json-render}"
+
+if [ -z "${SPEC_PATH:-}" ]; then
+  for candidate in \
+    "${CODEX_HOME:-$HOME/.codex}/skills/json-render-info-cards/references/daily-summary-spec.template.json" \
+    "./npm/skills/json-render-info-cards/references/daily-summary-spec.template.json" \
+    "./skills/json-render-info-cards/references/daily-summary-spec.template.json"
+  do
+    if [ -f "$candidate" ]; then
+      export SPEC_PATH="$candidate"
+      break
+    fi
+  done
+fi
+if [ -z "${SPEC_PATH:-}" ] || [ ! -f "$SPEC_PATH" ]; then
+  echo "Cannot find daily-summary-spec.template.json. Set SPEC_PATH explicitly." >&2
+  exit 1
+fi
 
 # Optional manual overrides:
 # export VIEWPORT_WIDTH=984
@@ -61,7 +81,7 @@ PY
 ## 3) Render
 
 ```bash
-node /Users/sorphwer/repos/json-render-cli/dist/cli.js \
+"$JSON_RENDER_CMD" \
   -m "$MESSAGE_JSON" \
   -c <(cat <<JSON
 {

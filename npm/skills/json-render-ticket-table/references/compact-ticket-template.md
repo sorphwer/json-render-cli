@@ -9,8 +9,29 @@ export STATUS="OPEN"
 export ASSIGNEE="Riino"
 export UPDATED_AT="Mon 14:34"
 export TOPIC="plugin-daemon Redis connectivity issue"
-export SPEC_PATH="${SPEC_PATH:-/Users/sorphwer/repos/json-render-cli/skills/json-render-ticket-table/references/compact-ticket-spec.template.json}"
 export OUT_PATH="${OUT_PATH:-/tmp/ticket-table.png}"
+
+if ! command -v json-render >/dev/null 2>&1; then
+  npm i -g json-render-cli
+fi
+export JSON_RENDER_CMD="${JSON_RENDER_CMD:-json-render}"
+
+if [ -z "${SPEC_PATH:-}" ]; then
+  for candidate in \
+    "${CODEX_HOME:-$HOME/.codex}/skills/json-render-ticket-table/references/compact-ticket-spec.template.json" \
+    "./npm/skills/json-render-ticket-table/references/compact-ticket-spec.template.json" \
+    "./skills/json-render-ticket-table/references/compact-ticket-spec.template.json"
+  do
+    if [ -f "$candidate" ]; then
+      export SPEC_PATH="$candidate"
+      break
+    fi
+  done
+fi
+if [ -z "${SPEC_PATH:-}" ] || [ ! -f "$SPEC_PATH" ]; then
+  echo "Cannot find compact-ticket-spec.template.json. Set SPEC_PATH explicitly." >&2
+  exit 1
+fi
 
 # Optional manual overrides:
 # export TOPIC_COL_WIDTH=420
@@ -64,7 +85,7 @@ PY
 ## 3) Render
 
 ```bash
-node /Users/sorphwer/repos/json-render-cli/dist/cli.js \
+"$JSON_RENDER_CMD" \
   -m "$MESSAGE_JSON" \
   -c <(cat <<JSON
 {

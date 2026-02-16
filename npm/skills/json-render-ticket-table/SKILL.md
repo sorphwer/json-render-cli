@@ -13,7 +13,7 @@ Keep layout stable so repeated snapshots are visually consistent.
 
 ## Workflow
 
-1. Ensure `json-render-cli` is built.
+1. Ensure `json-render` is available. If missing, run `npm i -g json-render-cli`; if Chromium is missing, run `npx playwright install chromium`.
 2. Generate message JSON in memory from template placeholders.
 3. Pass config via process substitution (`-c <(...)`) to avoid temp config files.
 4. Enable `screenshot.fullPage=true` when row count or text wrapping is variable.

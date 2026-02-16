@@ -13,7 +13,7 @@ Use this skill for communication visuals rather than tabular data.
 
 ## Workflow
 
-1. Ensure `json-render-cli` is built.
+1. Ensure `json-render` is available. If missing, run `npm i -g json-render-cli`; if Chromium is missing, run `npx playwright install chromium`.
 2. Define the card objective (announcement, hero, profile highlight).
 3. Structure content blocks in this order: headline, supporting text, optional CTA/media.
 4. Build message JSON directly (tree spec is often easiest for this category).

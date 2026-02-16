@@ -13,7 +13,7 @@ Use this skill for sequence-oriented communication (steps, phases, or timelines)
 
 ## Workflow
 
-1. Ensure `json-render-cli` is built.
+1. Ensure `json-render` is available. If missing, run `npm i -g json-render-cli`; if Chromium is missing, run `npx playwright install chromium`.
 2. Define ordered stages (name, state, and optional timestamp).
 3. Compose a vertical timeline or horizontal step strip.
 4. Use badges to indicate stage state (`DONE`, `IN PROGRESS`, `BLOCKED`).
