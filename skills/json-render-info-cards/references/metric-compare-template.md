@@ -21,6 +21,11 @@ export R2_RIGHT="316ms"
 export R3_LABEL="Failed Payments"
 export R3_LEFT="0.37%"
 export R3_RIGHT="0.52%"
+export OUT_PATH="${OUT_PATH:-/tmp/metric-compare.png}"
+
+# Optional manual overrides:
+export VIEWPORT_WIDTH="${VIEWPORT_WIDTH:-1040}"
+export VIEWPORT_HEIGHT="${VIEWPORT_HEIGHT:-260}"
 
 export SPEC_PATH="${SPEC_PATH:-/Users/sorphwer/repos/json-render-cli/skills/json-render-info-cards/references/metric-compare-spec.template.json}"
 ```
@@ -59,7 +64,7 @@ PY
 ```bash
 node /Users/sorphwer/repos/json-render-cli/dist/cli.js \
   -m "$MESSAGE_JSON" \
-  -c <(cat <<'JSON'
+  -c <(cat <<JSON
 {
   "version": 1,
   "catalog": {
@@ -67,12 +72,14 @@ node /Users/sorphwer/repos/json-render-cli/dist/cli.js \
     "componentDefaults": {}
   },
   "theme": { "mode": "system" },
-  "viewport": { "width": 1040, "height": 310, "deviceScaleFactor": 2 },
+  "viewport": { "width": ${VIEWPORT_WIDTH}, "height": ${VIEWPORT_HEIGHT}, "deviceScaleFactor": 2 },
   "screenshot": { "type": "png", "omitBackground": false, "fullPage": true },
   "canvas": { "background": "#ffffff", "padding": 12 }
 }
 JSON
 ) \
-  -o /tmp/metric-compare.png \
-  --size 1040x310
+  -o "$OUT_PATH" \
+  --size "${VIEWPORT_WIDTH}x${VIEWPORT_HEIGHT}"
 ```
+
+If this command is executed by a sub-agent, keep `"$OUT_PATH"` and let the main agent decide final cleanup.

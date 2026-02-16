@@ -12,6 +12,32 @@ export ASSIGNEE="Maya"
 export UPDATED_AT="Tue 10:22"
 export TOPIC="Checkout retry logic verification"
 export SPEC_PATH="${SPEC_PATH:-/Users/sorphwer/repos/json-render-cli/skills/json-render-table/references/compact-table-spec.template.json}"
+export OUT_PATH="${OUT_PATH:-/tmp/table-render.png}"
+
+# Optional manual overrides:
+# export TOPIC_COL_WIDTH=420
+# export VIEWPORT_WIDTH=970
+# export VIEWPORT_HEIGHT=108
+if [ -z "${TOPIC_COL_WIDTH:-}" ] || [ -z "${VIEWPORT_WIDTH:-}" ] || [ -z "${VIEWPORT_HEIGHT:-}" ]; then
+  eval "$(python3 - <<'PY'
+import math
+import os
+
+topic = os.environ.get("TOPIC", "").strip()
+topic_len = len(topic)
+topic_col_width = max(260, min(520, topic_len * 8 + 40))
+fixed_width = 92 + 108 + 94 + 122 + 132
+viewport_width = fixed_width + topic_col_width + 2
+chars_per_line = max(18, topic_col_width // 8)
+topic_lines = max(1, math.ceil(max(1, topic_len) / chars_per_line))
+viewport_height = max(96, min(220, 56 + topic_lines * 24))
+
+print(f"export TOPIC_COL_WIDTH={topic_col_width}")
+print(f"export VIEWPORT_WIDTH={viewport_width}")
+print(f"export VIEWPORT_HEIGHT={viewport_height}")
+PY
+)"
+fi
 ```
 
 ## 2) Build message JSON in memory
@@ -31,6 +57,7 @@ m = {
 }
 for k, v in m.items():
   tpl = tpl.replace(k, json.dumps(v, ensure_ascii=False)[1:-1])
+tpl = tpl.replace("__TOPIC_COL_WIDTH__", str(int(os.environ["TOPIC_COL_WIDTH"])))
 print(tpl)
 PY
 )"
@@ -41,7 +68,7 @@ PY
 ```bash
 node /Users/sorphwer/repos/json-render-cli/dist/cli.js \
   -m "$MESSAGE_JSON" \
-  -c <(cat <<'JSON'
+  -c <(cat <<JSON
 {
   "version": 1,
   "catalog": {
@@ -49,14 +76,16 @@ node /Users/sorphwer/repos/json-render-cli/dist/cli.js \
     "componentDefaults": {}
   },
   "theme": { "mode": "system" },
-  "viewport": { "width": 986, "height": 120, "deviceScaleFactor": 2 },
+  "viewport": { "width": ${VIEWPORT_WIDTH}, "height": ${VIEWPORT_HEIGHT}, "deviceScaleFactor": 2 },
   "screenshot": { "type": "png", "omitBackground": false, "fullPage": true },
   "canvas": { "background": "#ffffff", "padding": 0 }
 }
 JSON
 ) \
-  -o /tmp/table-render.png \
-  --size 986x120
+  -o "$OUT_PATH" \
+  --size "${VIEWPORT_WIDTH}x${VIEWPORT_HEIGHT}"
 ```
+
+If this command is executed by a sub-agent, keep `"$OUT_PATH"` and let the main agent decide final cleanup.
 
 For ticket-focused output with opinionated field semantics, use `json-render-ticket-table`.

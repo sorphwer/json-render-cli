@@ -11,8 +11,29 @@ export KEY_2="Success Rate: 99.92%"
 export KEY_3="P95 Latency: 287ms"
 export SUMMARY="Traffic increased 6.3% day-over-day with stable latency. Error volume stayed flat, and no customer-facing incidents were recorded."
 export UPDATED_AT="Tue 18:10"
+export OUT_PATH="${OUT_PATH:-/tmp/daily-summary.png}"
 
 export SPEC_PATH="${SPEC_PATH:-/Users/sorphwer/repos/json-render-cli/skills/json-render-info-cards/references/daily-summary-spec.template.json}"
+
+# Optional manual overrides:
+# export VIEWPORT_WIDTH=984
+# export VIEWPORT_HEIGHT=188
+if [ -z "${VIEWPORT_WIDTH:-}" ] || [ -z "${VIEWPORT_HEIGHT:-}" ]; then
+  eval "$(python3 - <<'PY'
+import math
+import os
+
+summary = os.environ.get("SUMMARY", "").strip()
+summary_len = len(summary)
+chars_per_line = 88
+summary_lines = max(1, math.ceil(max(1, summary_len) / chars_per_line))
+viewport_height = max(168, min(420, 126 + summary_lines * 24))
+
+print("export VIEWPORT_WIDTH=984")
+print(f"export VIEWPORT_HEIGHT={viewport_height}")
+PY
+)"
+fi
 ```
 
 ## 2) Build message JSON in memory
@@ -42,7 +63,7 @@ PY
 ```bash
 node /Users/sorphwer/repos/json-render-cli/dist/cli.js \
   -m "$MESSAGE_JSON" \
-  -c <(cat <<'JSON'
+  -c <(cat <<JSON
 {
   "version": 1,
   "catalog": {
@@ -50,12 +71,14 @@ node /Users/sorphwer/repos/json-render-cli/dist/cli.js \
     "componentDefaults": {}
   },
   "theme": { "mode": "system" },
-  "viewport": { "width": 1024, "height": 270, "deviceScaleFactor": 2 },
+  "viewport": { "width": ${VIEWPORT_WIDTH}, "height": ${VIEWPORT_HEIGHT}, "deviceScaleFactor": 2 },
   "screenshot": { "type": "png", "omitBackground": false, "fullPage": true },
   "canvas": { "background": "#ffffff", "padding": 12 }
 }
 JSON
 ) \
-  -o /tmp/daily-summary.png \
-  --size 1024x270
+  -o "$OUT_PATH" \
+  --size "${VIEWPORT_WIDTH}x${VIEWPORT_HEIGHT}"
 ```
+
+If this command is executed by a sub-agent, keep `"$OUT_PATH"` and let the main agent decide final cleanup.

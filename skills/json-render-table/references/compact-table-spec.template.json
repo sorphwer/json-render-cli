@@ -28,7 +28,7 @@
     "hTime": { "type": "Container", "props": { "width": 132, "padding": "10px 12px", "style": { "borderRight": "1px solid #e2e8f0" } }, "children": ["hTimeText"] },
     "hTimeText": { "type": "Text", "props": { "text": "Updated", "size": 13, "weight": 700, "color": "#334155" } },
 
-    "hTopic": { "type": "Container", "props": { "width": 364, "padding": "10px 12px" }, "children": ["hTopicText"] },
+    "hTopic": { "type": "Container", "props": { "width": __TOPIC_COL_WIDTH__, "padding": "10px 12px" }, "children": ["hTopicText"] },
     "hTopicText": { "type": "Text", "props": { "text": "Topic", "size": 13, "weight": 700, "color": "#334155" } },
 
     "dataRow": {
@@ -52,7 +52,7 @@
     "cTime": { "type": "Container", "props": { "width": 132, "padding": "12px 12px", "style": { "borderRight": "1px solid #e2e8f0" } }, "children": ["timeText"] },
     "timeText": { "type": "Text", "props": { "text": "__UPDATED_AT__", "size": 15, "color": "#334155" } },
 
-    "cTopic": { "type": "Container", "props": { "width": 364, "padding": "12px 12px" }, "children": ["topicText"] },
+    "cTopic": { "type": "Container", "props": { "width": __TOPIC_COL_WIDTH__, "padding": "12px 12px" }, "children": ["topicText"] },
     "topicText": { "type": "Text", "props": { "text": "__TOPIC__", "size": 15, "weight": 500, "color": "#0f172a" } }
   }
 }

@@ -18,12 +18,20 @@ Use this skill for non-ticket table use cases.
 3. Generate message JSON in memory from the table template.
 4. Pass config via process substitution (`-c <(...)`) to avoid temporary config files.
 5. Set `screenshot.fullPage=true` when row count or line wrapping is variable.
-6. Render PNG and return output path (or Base64 only when explicitly requested).
-7. Theme mode is configured with `theme.mode`; use `system` by default, or force `light` / `dark` when needed.
+6. Tune viewport width/height to the current content footprint before final render, and avoid oversized fixed `--size`.
+7. Render PNG and return output path (or Base64 only when explicitly requested).
+8. Theme mode is configured with `theme.mode`; use `system` by default, or force `light` / `dark` when needed.
+
+## Agent Coordination
+
+- Prefer rendering in the current (main) agent when the image must be delivered in the same turn.
+- Delegate rendering to a sub-agent only when output-path handoff is explicit and deterministic.
+- Keep rendered PNG files intact in sub-agent execution; do not delete or move them there.
+- Perform garbage collection only in the main agent, and only after delivery succeeds.
 
 ## Model Routing
 
-- If the current assistant model is high-cost (for example, Opus-class), route simple, deterministic table rendering to a lower-cost fast model (for example, `gemini3flash`) and keep the expensive model for ambiguous reasoning or design tasks.
+- If the current assistant model is high-cost (for example, Opus-class), route simple deterministic rendering to a lower-cost fast model (for example, `gemini3flash`) only when Agent Coordination rules can be enforced; otherwise render in the current main agent.
 
 ## Use Case Selection
 
@@ -51,15 +59,21 @@ Default style:
 - Keep spacing compact and deterministic.
 - Use `Badge` only for categorical status-like fields.
 - Resize the widest column first when content overflows.
+- Keep viewport width close to the sum of column widths and avoid large horizontal slack.
+- Start from a compact viewport height and expand only when clipping appears.
 
 ## Output Rules
 
 - Prefer `-o /tmp/<name>.png` for image delivery.
 - Use `-o stdout` only when caller explicitly asks for Base64.
 - Avoid temporary JSON files unless explicitly requested.
+- If a sub-agent renders the PNG, return path only and skip cleanup in that sub-agent.
+- Run final PNG cleanup only in the main agent after image delivery.
 
 ## Troubleshooting
 
 - If Chromium is missing, run: `npx playwright install chromium`.
 - If rendering is too wide, reduce wide columns or font size.
+- If left/right whitespace is too large, decrease viewport width or topic column width and rerender.
+- If top/bottom whitespace is too large, decrease viewport height and rerender.
 - If bottom rows are clipped, enable `screenshot.fullPage=true`.

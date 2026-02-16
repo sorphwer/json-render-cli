@@ -23,6 +23,11 @@ export M3_DELTA="-16ms"
 export M4_LABEL="Weekly Active Users"
 export M4_VALUE="41,208"
 export M4_DELTA="+5.8%"
+export OUT_PATH="${OUT_PATH:-/tmp/kpi-overview.png}"
+
+# Optional manual overrides:
+export VIEWPORT_WIDTH="${VIEWPORT_WIDTH:-1032}"
+export VIEWPORT_HEIGHT="${VIEWPORT_HEIGHT:-196}"
 
 export SPEC_PATH="${SPEC_PATH:-/Users/sorphwer/repos/json-render-cli/skills/json-render-info-cards/references/kpi-overview-spec.template.json}"
 ```
@@ -62,7 +67,7 @@ PY
 ```bash
 node /Users/sorphwer/repos/json-render-cli/dist/cli.js \
   -m "$MESSAGE_JSON" \
-  -c <(cat <<'JSON'
+  -c <(cat <<JSON
 {
   "version": 1,
   "catalog": {
@@ -70,12 +75,14 @@ node /Users/sorphwer/repos/json-render-cli/dist/cli.js \
     "componentDefaults": {}
   },
   "theme": { "mode": "system" },
-  "viewport": { "width": 1032, "height": 220, "deviceScaleFactor": 2 },
+  "viewport": { "width": ${VIEWPORT_WIDTH}, "height": ${VIEWPORT_HEIGHT}, "deviceScaleFactor": 2 },
   "screenshot": { "type": "png", "omitBackground": false, "fullPage": true },
   "canvas": { "background": "#ffffff", "padding": 16 }
 }
 JSON
 ) \
-  -o /tmp/kpi-overview.png \
-  --size 1032x220
+  -o "$OUT_PATH" \
+  --size "${VIEWPORT_WIDTH}x${VIEWPORT_HEIGHT}"
 ```
+
+If this command is executed by a sub-agent, keep `"$OUT_PATH"` and let the main agent decide final cleanup.
