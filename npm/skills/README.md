@@ -14,13 +14,29 @@ Each skill folder contains a `SKILL.md` plus optional `references/` and `agents/
 
 ## Install from GitHub
 
-Install one or more skills by repo path (example with Codex skill installer helper):
+Install all skills with one command:
 
 ```bash
-scripts/install-skill-from-github.py --repo sorphwer/json-render-cli --path npm/skills/json-render-table
+node scripts/install-skills.mjs --all
 ```
 
-You can install any other skill by replacing the final path segment.
+Install specific skills:
+
+```bash
+node scripts/install-skills.mjs --skill json-render-table --skill json-render-flow-summary
+```
+
+Run interactively to pick which skills to install:
+
+```bash
+node scripts/install-skills.mjs
+```
+
+Custom destination (default is `~/.openclaw/skills/`):
+
+```bash
+node scripts/install-skills.mjs --all --dest ~/custom/path
+```
 
 ## Runtime prerequisites
 

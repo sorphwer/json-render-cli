@@ -17,9 +17,15 @@ Use this skill for sequence-oriented communication (steps, phases, or timelines)
 2. Define ordered stages (name, state, and optional timestamp).
 3. Compose a vertical timeline or horizontal step strip.
 4. Use badges to indicate stage state (`DONE`, `IN PROGRESS`, `BLOCKED`).
-5. Tune viewport width/height to the current content footprint before final render, and avoid oversized fixed `--size`.
-6. Render PNG and adjust spacing so stage boundaries are visually clear.
-7. Theme mode is configured with `theme.mode`; default to `system`, or pin to `light` / `dark` as needed.
+5. Use `references/flow-summary-template.md` as the default executable command template.
+6. Tune viewport width/height to the current content footprint before final render, and avoid oversized fixed `--size`.
+7. Render PNG and adjust spacing so stage boundaries are visually clear.
+8. Theme mode is configured with `theme.mode`; default to `system`, or pin to `light` / `dark` as needed.
+
+## Build And Render
+
+Use `references/flow-summary-template.md`.
+Treat the included template as a ready command path with runtime bootstrap and spec-path resolution.
 
 ## Agent Coordination
 

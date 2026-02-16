@@ -26,7 +26,7 @@ export function Features() {
   return (
     <section id="skills" className={styles.section}>
       <div className={styles.head}>
-        <p className={styles.kicker}>Skill Catalog</p>
+        <p className={styles.kicker}>How it works</p>
         <h2 className={styles.title}>Prompt in chat, JSON by agent, one CLI render.</h2>
         <p className={styles.subtitle}>
           Compared with writing HTML/CSS from scratch, this flow typically uses about{" "}

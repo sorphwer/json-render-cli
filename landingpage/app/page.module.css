@@ -6,6 +6,7 @@
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left: env(safe-area-inset-left, 0px);
   position: relative;
+  z-index: 2;
   height: 100dvh;
   min-height: 100svh;
   padding:
@@ -16,6 +17,29 @@
   overflow: hidden;
   overscroll-behavior-x: none;
   touch-action: pan-y pinch-zoom;
+}
+
+.page::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: -20%;
+  z-index: 50;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(
+      circle at var(--glow-blue-x, 82%) var(--glow-blue-y, 12%),
+      rgba(0, 112, 201, var(--glow-blue-a, 0.42)),
+      rgba(0, 112, 201, 0.08) 34%,
+      transparent 64%
+    ),
+    radial-gradient(
+      circle at var(--glow-pink-x, 18%) var(--glow-pink-y, 88%),
+      rgba(232, 62, 140, var(--glow-pink-a, 0.36)),
+      rgba(232, 62, 140, 0.08) 36%,
+      transparent 66%
+    );
+  animation: glowOverlay 16s ease-in-out infinite;
 }
 
 .header {
@@ -30,12 +54,22 @@
   gap: 10px;
   padding: 10px;
   border-radius: 999px;
-  background: rgba(10, 10, 10, 0.78);
-  border: 1px solid var(--color-border-strong);
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(14px);
-  will-change: transform;
-  contain: layout style paint;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.04) 50%,
+      rgba(255, 255, 255, 0.06) 100%
+    ),
+    rgba(18, 18, 18, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 1px 1px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(28px) saturate(1.8) brightness(1.1);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8) brightness(1.1);
 }
 
 .installBar {
@@ -47,8 +81,8 @@
   gap: 10px;
   padding: 0 14px;
   border-radius: 999px;
-  border: 1px solid var(--color-border);
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+  border: none;
+  background: transparent;
 }
 
 .installLabel {
@@ -85,13 +119,19 @@
   height: 40px;
   padding: 0 14px;
   border-radius: 999px;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.04);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   color: var(--color-ink-soft);
-  transition: color 140ms ease, border-color 140ms ease, background 140ms ease;
+  transition: color 140ms ease, border-color 140ms ease, background 140ms ease, box-shadow 140ms ease;
 }
 
 .copyButton {
@@ -734,6 +774,16 @@
   }
 }
 
+.copyright {
+  width: 100%;
+  padding: 24px 0 calc(var(--safe-bottom) + 16px);
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.02em;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -743,5 +793,88 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes glowOverlay {
+  0% {
+    --glow-blue-x: 82%;
+    --glow-blue-y: 12%;
+    --glow-blue-a: 0.42;
+    --glow-pink-x: 18%;
+    --glow-pink-y: 88%;
+    --glow-pink-a: 0.36;
+  }
+
+  12.5% {
+    --glow-blue-x: 68%;
+    --glow-blue-y: 24%;
+    --glow-blue-a: 0.50;
+    --glow-pink-x: 32%;
+    --glow-pink-y: 78%;
+    --glow-pink-a: 0.30;
+  }
+
+  25% {
+    --glow-blue-x: 52%;
+    --glow-blue-y: 38%;
+    --glow-blue-a: 0.38;
+    --glow-pink-x: 50%;
+    --glow-pink-y: 64%;
+    --glow-pink-a: 0.44;
+  }
+
+  37.5% {
+    --glow-blue-x: 36%;
+    --glow-blue-y: 48%;
+    --glow-blue-a: 0.32;
+    --glow-pink-x: 68%;
+    --glow-pink-y: 52%;
+    --glow-pink-a: 0.50;
+  }
+
+  50% {
+    --glow-blue-x: 22%;
+    --glow-blue-y: 54%;
+    --glow-blue-a: 0.46;
+    --glow-pink-x: 80%;
+    --glow-pink-y: 42%;
+    --glow-pink-a: 0.38;
+  }
+
+  62.5% {
+    --glow-blue-x: 36%;
+    --glow-blue-y: 44%;
+    --glow-blue-a: 0.34;
+    --glow-pink-x: 72%;
+    --glow-pink-y: 56%;
+    --glow-pink-a: 0.48;
+  }
+
+  75% {
+    --glow-blue-x: 56%;
+    --glow-blue-y: 30%;
+    --glow-blue-a: 0.48;
+    --glow-pink-x: 54%;
+    --glow-pink-y: 72%;
+    --glow-pink-a: 0.32;
+  }
+
+  87.5% {
+    --glow-blue-x: 72%;
+    --glow-blue-y: 18%;
+    --glow-blue-a: 0.38;
+    --glow-pink-x: 34%;
+    --glow-pink-y: 82%;
+    --glow-pink-a: 0.42;
+  }
+
+  100% {
+    --glow-blue-x: 82%;
+    --glow-blue-y: 12%;
+    --glow-blue-a: 0.42;
+    --glow-pink-x: 18%;
+    --glow-pink-y: 88%;
+    --glow-pink-a: 0.36;
   }
 }

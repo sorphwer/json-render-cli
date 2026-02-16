@@ -41,7 +41,7 @@ export function Hero() {
           Try Interactive Showcase
         </a>
         <a href="#skills" className={styles.secondaryAction}>
-          Explore Skill Catalog
+          How it works
         </a>
       </div>
     </section>

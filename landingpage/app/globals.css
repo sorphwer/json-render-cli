@@ -52,6 +52,7 @@ body::before {
   pointer-events: none;
   position: fixed;
   inset: 0;
+  z-index: 1;
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E"),
     radial-gradient(rgba(255, 255, 255, 0.24) 0.65px, transparent 0.65px);
@@ -65,22 +66,23 @@ body::after {
   content: "";
   pointer-events: none;
   position: fixed;
-  inset: -14%;
+  inset: -20%;
+  z-index: 1;
   background-image:
     radial-gradient(
-      circle at var(--glow-blue-x, 84%) var(--glow-blue-y, 14%),
-      rgba(0, 112, 201, 0.26),
-      rgba(0, 112, 201, 0.06) 36%,
-      transparent 68%
+      circle at var(--glow-blue-x, 82%) var(--glow-blue-y, 12%),
+      rgba(0, 112, 201, var(--glow-blue-a, 0.42)),
+      rgba(0, 112, 201, 0.08) 34%,
+      transparent 64%
     ),
     radial-gradient(
-      circle at var(--glow-pink-x, 46%) var(--glow-pink-y, 90%),
-      rgba(232, 62, 140, 0.22),
-      rgba(232, 62, 140, 0.06) 38%,
-      transparent 70%
+      circle at var(--glow-pink-x, 18%) var(--glow-pink-y, 88%),
+      rgba(232, 62, 140, var(--glow-pink-a, 0.36)),
+      rgba(232, 62, 140, 0.08) 36%,
+      transparent 66%
     ),
     radial-gradient(circle at center, transparent 58%, rgba(0, 0, 0, 0.48));
-  animation: glowOrbit 22s linear infinite;
+  animation: glowOrbit 16s ease-in-out infinite;
   will-change: background-image;
 }
 
@@ -102,91 +104,121 @@ textarea {
 
 @keyframes glowOrbit {
   0% {
-    --glow-blue-x: 84%;
-    --glow-blue-y: 14%;
-    --glow-pink-x: 46%;
-    --glow-pink-y: 90%;
+    --glow-blue-x: 82%;
+    --glow-blue-y: 12%;
+    --glow-blue-a: 0.42;
+    --glow-pink-x: 18%;
+    --glow-pink-y: 88%;
+    --glow-pink-a: 0.36;
   }
 
   12.5% {
-    --glow-blue-x: 87%;
-    --glow-blue-y: 20%;
-    --glow-pink-x: 52%;
-    --glow-pink-y: 86%;
+    --glow-blue-x: 68%;
+    --glow-blue-y: 24%;
+    --glow-blue-a: 0.50;
+    --glow-pink-x: 32%;
+    --glow-pink-y: 78%;
+    --glow-pink-a: 0.30;
   }
 
   25% {
-    --glow-blue-x: 90%;
-    --glow-blue-y: 28%;
-    --glow-pink-x: 58%;
-    --glow-pink-y: 80%;
+    --glow-blue-x: 52%;
+    --glow-blue-y: 38%;
+    --glow-blue-a: 0.38;
+    --glow-pink-x: 50%;
+    --glow-pink-y: 64%;
+    --glow-pink-a: 0.44;
   }
 
   37.5% {
-    --glow-blue-x: 87%;
-    --glow-blue-y: 36%;
-    --glow-pink-x: 63%;
-    --glow-pink-y: 73%;
+    --glow-blue-x: 36%;
+    --glow-blue-y: 48%;
+    --glow-blue-a: 0.32;
+    --glow-pink-x: 68%;
+    --glow-pink-y: 52%;
+    --glow-pink-a: 0.50;
   }
 
   50% {
-    --glow-blue-x: 82%;
-    --glow-blue-y: 40%;
-    --glow-pink-x: 67%;
-    --glow-pink-y: 68%;
+    --glow-blue-x: 22%;
+    --glow-blue-y: 54%;
+    --glow-blue-a: 0.46;
+    --glow-pink-x: 80%;
+    --glow-pink-y: 42%;
+    --glow-pink-a: 0.38;
   }
 
   62.5% {
-    --glow-blue-x: 76%;
-    --glow-blue-y: 36%;
-    --glow-pink-x: 63%;
-    --glow-pink-y: 72%;
+    --glow-blue-x: 36%;
+    --glow-blue-y: 44%;
+    --glow-blue-a: 0.34;
+    --glow-pink-x: 72%;
+    --glow-pink-y: 56%;
+    --glow-pink-a: 0.48;
   }
 
   75% {
-    --glow-blue-x: 72%;
-    --glow-blue-y: 28%;
-    --glow-pink-x: 56%;
-    --glow-pink-y: 78%;
+    --glow-blue-x: 56%;
+    --glow-blue-y: 30%;
+    --glow-blue-a: 0.48;
+    --glow-pink-x: 54%;
+    --glow-pink-y: 72%;
+    --glow-pink-a: 0.32;
   }
 
   87.5% {
-    --glow-blue-x: 76%;
-    --glow-blue-y: 20%;
-    --glow-pink-x: 50%;
-    --glow-pink-y: 84%;
+    --glow-blue-x: 72%;
+    --glow-blue-y: 18%;
+    --glow-blue-a: 0.38;
+    --glow-pink-x: 34%;
+    --glow-pink-y: 82%;
+    --glow-pink-a: 0.42;
   }
 
   100% {
-    --glow-blue-x: 84%;
-    --glow-blue-y: 14%;
-    --glow-pink-x: 46%;
-    --glow-pink-y: 90%;
+    --glow-blue-x: 82%;
+    --glow-blue-y: 12%;
+    --glow-blue-a: 0.42;
+    --glow-pink-x: 18%;
+    --glow-pink-y: 88%;
+    --glow-pink-a: 0.36;
   }
 }
 
 @property --glow-blue-x {
   syntax: "<percentage>";
   inherits: false;
-  initial-value: 84%;
+  initial-value: 82%;
 }
 
 @property --glow-blue-y {
   syntax: "<percentage>";
   inherits: false;
-  initial-value: 14%;
+  initial-value: 12%;
 }
 
 @property --glow-pink-x {
   syntax: "<percentage>";
   inherits: false;
-  initial-value: 46%;
+  initial-value: 18%;
 }
 
 @property --glow-pink-y {
   syntax: "<percentage>";
   inherits: false;
-  initial-value: 90%;
+  initial-value: 88%;
+}
+
+@property --glow-blue-a {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0.42;
+}
+
+@property --glow-pink-a {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0.36;
 }
 
 @keyframes grainShift {

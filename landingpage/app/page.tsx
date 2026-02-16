@@ -11,14 +11,12 @@ import styles from "./page.module.css";
 const LOBE_ICON_CDN = "https://unpkg.com/@lobehub/icons-static-svg@latest/icons";
 const SIMPLE_ICON_CDN = "https://cdn.simpleicons.org";
 const GITHUB_URL = "https://github.com/sorphwer/json-render-cli";
-const SKILLS_PATH_URL = `${GITHUB_URL}/tree/main/npm/skills`;
-const VERCEL_CONFIG_URL = `${GITHUB_URL}/blob/main/vercel.json`;
 const INSTALL_COMMAND =
-  "scripts/install-skill-from-github.py --repo sorphwer/json-render-cli --path npm/skills/json-render-table --path npm/skills/json-render-ticket-table --path npm/skills/json-render-info-cards --path npm/skills/json-render-announcement-cards --path npm/skills/json-render-flow-summary";
+  "node <(curl -fsSL https://raw.githubusercontent.com/sorphwer/json-render-cli/main/scripts/install-skills.mjs) --all";
 const AGENT_STEPS = [
   {
-    title: "Install skills from GitHub paths",
-    detail: "Install from sorphwer/json-render-cli under npm/skills/*."
+    title: "Run the skill installer",
+    detail: "One command installs all skills to ~/.openclaw/skills/."
   },
   {
     title: "Chat with Agent using installed skills",
@@ -63,7 +61,6 @@ export default function Home() {
     <div className={styles.page}>
       <header className={styles.header}>
         <div className={styles.installBar}>
-          <span className={styles.installLabel}>Install Skills</span>
           <code className={styles.installCommand}>{INSTALL_COMMAND}</code>
         </div>
 
@@ -175,23 +172,23 @@ export default function Home() {
             <div className={styles.starGlow} aria-hidden="true" />
             <div className={styles.starGrid}>
               <div className={styles.starCopy}>
-                <p className={styles.starKicker}>GitHub Skills</p>
+                <p className={styles.starKicker}>Acknowledgements</p>
                 <h2 id="star-title" className={styles.starTitle}>
-                  Install skills directly from this repo and start rendering in chat.
+                  Built in the open. Give it a star if it saved you time.
                 </h2>
                 <p className={styles.starDescription}>
-                  For skill usage, install skills only. Runtime setup is handled by the skills when needed, and the
-                  landing page remains optional.
+                  This project is open-source and free to use. If you find it helpful, a star on GitHub
+                  means a lot and helps others discover it too.
                 </p>
                 <div className={styles.starActions}>
                   <a
-                    href={SKILLS_PATH_URL}
+                    href={`${GITHUB_URL}/stargazers`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.starPrimary}
                   >
                     <Star className={styles.starPrimaryIcon} aria-hidden="true" />
-                    Open Skills Folder
+                    Star on GitHub
                   </a>
                   <a
                     href={GITHUB_URL}
@@ -209,20 +206,21 @@ export default function Home() {
                 <article className={styles.partnerCard}>
                   <p className={styles.partnerKicker}>
                     <Sparkles className={styles.partnerKickerIcon} aria-hidden="true" />
-                    CI/CD
+                    Powered by
                   </p>
-                  <h3 className={styles.partnerTitle}>Monorepo deploy path is pinned via vercel.json.</h3>
+                  <h3 className={styles.partnerTitle}>Built on top of the JSON Render engine.</h3>
                   <p className={styles.partnerDescription}>
-                    Use the root-level Vercel config to build from <code>landingpage/</code> while keeping npm and
-                    skills under <code>npm/</code>.
+                    All skill templates compile to JSON specs and render through{" "}
+                    <code>json-render</code> — an open-source, config-driven layout engine for
+                    producing pixel-perfect PNGs from structured data.
                   </p>
                   <a
-                    href={VERCEL_CONFIG_URL}
+                    href="https://json-render.dev/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.partnerLink}
                   >
-                    Open vercel.json
+                    json-render.dev
                     <ExternalLink className={styles.partnerLinkIcon} aria-hidden="true" />
                   </a>
                 </article>
@@ -230,6 +228,10 @@ export default function Home() {
             </div>
           </section>
         </section>
+        <p className={styles.copyright}>
+          &copy;2012 &ndash; 2026<br />
+          Nest of Etamine Studio All Rights Reserved.
+        </p>
       </DeckScroller>
     </div>
   );
