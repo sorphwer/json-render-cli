@@ -41,17 +41,17 @@ export function ShowcaseShell() {
     {
       id: createId(),
       role: "agent",
-      text: "Done. json-render-cli and Chromium dependencies are installed."
+      text: "Done. Runtime is ready."
     },
     {
       id: createId(),
       role: "user",
-      text: "Next, install the bundled skills from node_modules."
+      text: "Next, install skill from GitHub path: sorphwer/json-render-cli -> npm/skills/json-render-table"
     },
     {
       id: createId(),
       role: "agent",
-      text: "Done. The bundled skills from node_modules are installed. I can now render images for you to replace the original ASCII wireframes."
+      text: "Done. The skill is installed from npm/skills. I can now render images for you to replace ASCII wireframes."
     }
   ]);
   const [currentPrompt, setCurrentPrompt] = useState<PromptDef | null>(INITIAL_PROMPT);

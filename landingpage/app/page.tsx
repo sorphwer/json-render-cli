@@ -11,20 +11,22 @@ import styles from "./page.module.css";
 const LOBE_ICON_CDN = "https://unpkg.com/@lobehub/icons-static-svg@latest/icons";
 const SIMPLE_ICON_CDN = "https://cdn.simpleicons.org";
 const GITHUB_URL = "https://github.com/sorphwer/json-render-cli";
-const JSON_RENDER_PROJECT_URL = "https://json-render.dev/";
-const INSTALL_COMMAND = "npm i -g json-render-cli && npx playwright install chromium";
+const SKILLS_PATH_URL = `${GITHUB_URL}/tree/main/npm/skills`;
+const VERCEL_CONFIG_URL = `${GITHUB_URL}/blob/main/vercel.json`;
+const INSTALL_COMMAND =
+  "npm i -g json-render-cli && npx playwright install chromium && scripts/install-skill-from-github.py --repo sorphwer/json-render-cli --path npm/skills/json-render-table";
 const AGENT_STEPS = [
   {
-    title: "Run installation first",
-    detail: "Install json-render-cli and Chromium runtime."
+    title: "Install runtime first",
+    detail: "Install json-render-cli and Chromium runtime once."
   },
   {
-    title: "Ask Agent to install skills",
-    detail: "Load bundled skills from node_modules into the workspace."
+    title: "Install skills from GitHub paths",
+    detail: "Install from sorphwer/json-render-cli under npm/skills/<skill-name>."
   },
   {
-    title: "Chat with Agent using skills",
-    detail: "Request image rendering with a selected skill instead of ASCII wireframes."
+    title: "Chat with Agent using installed skills",
+    detail: "Request image rendering directly without landingpage runtime dependency."
   }
 ];
 
@@ -173,22 +175,22 @@ export default function Home() {
             <div className={styles.starGlow} aria-hidden="true" />
             <div className={styles.starGrid}>
               <div className={styles.starCopy}>
-                <p className={styles.starKicker}>Community</p>
+                <p className={styles.starKicker}>GitHub Skills</p>
                 <h2 id="star-title" className={styles.starTitle}>
-                  Welcome aboard. If this project helps, give json-render-cli a star.
+                  Install skills directly from this repo and start rendering in chat.
                 </h2>
                 <p className={styles.starDescription}>
-                  Your star helps more builders discover a faster prompt-to-image workflow with stable output quality.
+                  For skill usage, you only need runtime + skill installation. The landing page is optional and separate.
                 </p>
                 <div className={styles.starActions}>
                   <a
-                    href={`${GITHUB_URL}/stargazers`}
+                    href={SKILLS_PATH_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.starPrimary}
                   >
                     <Star className={styles.starPrimaryIcon} aria-hidden="true" />
-                    Star on GitHub
+                    Open Skills Folder
                   </a>
                   <a
                     href={GITHUB_URL}
@@ -206,20 +208,20 @@ export default function Home() {
                 <article className={styles.partnerCard}>
                   <p className={styles.partnerKicker}>
                     <Sparkles className={styles.partnerKickerIcon} aria-hidden="true" />
-                    Also
+                    CI/CD
                   </p>
-                  <h3 className={styles.partnerTitle}>Please check Vercel&apos;s json-render project.</h3>
+                  <h3 className={styles.partnerTitle}>Monorepo deploy path is pinned via vercel.json.</h3>
                   <p className={styles.partnerDescription}>
-                    Explore the upstream project powering this workflow and see how component rendering scales beyond
-                    one template.
+                    Use the root-level Vercel config to build from <code>landingpage/</code> while keeping npm and
+                    skills under <code>npm/</code>.
                   </p>
                   <a
-                    href={JSON_RENDER_PROJECT_URL}
+                    href={VERCEL_CONFIG_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.partnerLink}
                   >
-                    Open json-render.dev
+                    Open vercel.json
                     <ExternalLink className={styles.partnerLinkIcon} aria-hidden="true" />
                   </a>
                 </article>
