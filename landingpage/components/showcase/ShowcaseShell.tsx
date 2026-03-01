@@ -1,10 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { buildAgentReply } from "@/lib/agent-replies";
-import { DEFAULT_ENABLED_SKILLS, PROMPTS, SKILLS } from "@/lib/showcase-data";
-import { buildPromptPool, pickRandomPrompt } from "@/lib/random-prompt";
+import { PROMPTS, SKILLS } from "@/lib/showcase-data";
+import { pickRandomPrompt } from "@/lib/random-prompt";
 import type { ChatMessage, ImageMode, PromptDef, SkillDef, SkillId } from "@/lib/showcase-types";
 
 import { ChatPanel } from "./ChatPanel";
@@ -19,7 +19,7 @@ function createId() {
   return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
-const INITIAL_PROMPT = pickRandomPrompt(buildPromptPool(PROMPTS, DEFAULT_ENABLED_SKILLS));
+const INITIAL_PROMPT = pickRandomPrompt(PROMPTS);
 
 const SKILLS_BY_ID: Record<SkillId, SkillDef> = SKILLS.reduce(
   (acc, skill) => {
@@ -30,33 +30,25 @@ const SKILLS_BY_ID: Record<SkillId, SkillDef> = SKILLS.reduce(
 );
 
 export function ShowcaseShell() {
-  const [enabledSkills, setEnabledSkills] = useState<Record<SkillId, boolean>>(DEFAULT_ENABLED_SKILLS);
   const [imageMode, setImageMode] = useState<ImageMode>("dark");
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: createId(),
       role: "user",
-      text: "Please install skills from GitHub path: sorphwer/json-render-cli -> npm/skills/*"
+      text: "Please install skill from GitHub path: sorphwer/json-render-cli -> npm/skills/use-json-render-cli"
     },
     {
       id: createId(),
       role: "agent",
-      text: "Done. Skills are installed from npm/skills. Runtime will be bootstrapped automatically when rendering."
+      text: "Done. use-json-render-cli is installed from npm/skills. It routes to the right template automatically."
     }
   ]);
   const [currentPrompt, setCurrentPrompt] = useState<PromptDef | null>(INITIAL_PROMPT);
   const [isSending, setIsSending] = useState(false);
 
-  const promptPool = useMemo(() => buildPromptPool(PROMPTS, enabledSkills), [enabledSkills]);
-
-  const enabledSkillsRef = useRef(enabledSkills);
   const imageModeRef = useRef(imageMode);
   const lastSentPromptIdRef = useRef<string | undefined>(undefined);
   const timeoutRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    enabledSkillsRef.current = enabledSkills;
-  }, [enabledSkills]);
 
   useEffect(() => {
     imageModeRef.current = imageMode;
@@ -68,30 +60,6 @@ export function ShowcaseShell() {
         window.clearTimeout(timeoutRef.current);
       }
     };
-  }, []);
-
-  const handleToggleSkill = useCallback((skillId: SkillId) => {
-    setEnabledSkills((prev) => {
-      const next = {
-        ...prev,
-        [skillId]: !prev[skillId]
-      };
-
-      const nextPool = buildPromptPool(PROMPTS, next);
-      setCurrentPrompt((existingPrompt) => {
-        if (nextPool.length === 0) {
-          return null;
-        }
-
-        if (existingPrompt && nextPool.some((prompt) => prompt.id === existingPrompt.id)) {
-          return existingPrompt;
-        }
-
-        return pickRandomPrompt(nextPool, lastSentPromptIdRef.current);
-      });
-
-      return next;
-    });
   }, []);
 
   const handleSend = useCallback(() => {
@@ -140,14 +108,13 @@ export function ShowcaseShell() {
       );
 
       lastSentPromptIdRef.current = currentPrompt.id;
-      const nextPool = buildPromptPool(PROMPTS, enabledSkillsRef.current);
-      setCurrentPrompt(pickRandomPrompt(nextPool, currentPrompt.id));
+      setCurrentPrompt(pickRandomPrompt(PROMPTS, currentPrompt.id));
       setIsSending(false);
     }, delay);
   }, [currentPrompt, isSending]);
 
-  const currentPromptText = currentPrompt?.text ?? "Enable at least one skill";
-  const canSend = Boolean(currentPrompt) && promptPool.length > 0;
+  const currentPromptText = currentPrompt?.text ?? "Prompt ready";
+  const canSend = Boolean(currentPrompt);
 
   return (
     <div className={styles.shell}>
@@ -159,13 +126,7 @@ export function ShowcaseShell() {
         skillsById={SKILLS_BY_ID}
         onSend={handleSend}
       />
-      <ControlMenu
-        skills={SKILLS}
-        enabledSkills={enabledSkills}
-        onToggleSkill={handleToggleSkill}
-        imageMode={imageMode}
-        onChangeImageMode={setImageMode}
-      />
+      <ControlMenu imageMode={imageMode} onChangeImageMode={setImageMode} />
     </div>
   );
 }

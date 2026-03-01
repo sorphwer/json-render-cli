@@ -1,24 +1,15 @@
 import { useRef } from "react";
 import type { WheelEvent as ReactWheelEvent } from "react";
 
-import type { ImageMode, SkillDef, SkillId } from "@/lib/showcase-types";
+import type { ImageMode } from "@/lib/showcase-types";
 import styles from "./ControlMenu.module.css";
 
 interface ControlMenuProps {
-  skills: SkillDef[];
-  enabledSkills: Record<SkillId, boolean>;
-  onToggleSkill: (skillId: SkillId) => void;
   imageMode: ImageMode;
   onChangeImageMode: (mode: ImageMode) => void;
 }
 
-export function ControlMenu({
-  skills,
-  enabledSkills,
-  onToggleSkill,
-  imageMode,
-  onChangeImageMode
-}: ControlMenuProps) {
+export function ControlMenu({ imageMode, onChangeImageMode }: ControlMenuProps) {
   const panelRef = useRef<HTMLElement>(null);
 
   const handlePanelWheelCapture = (event: ReactWheelEvent<HTMLElement>) => {
@@ -67,27 +58,6 @@ export function ControlMenu({
             </button>
           ))}
         </div>
-      </div>
-
-      <div className={styles.group}>
-        <p className={styles.groupLabel}>Enabled Skills</p>
-        <ul className={styles.skillList}>
-          {skills.map((skill) => (
-            <li key={skill.id} className={styles.skillItem}>
-              <label className={styles.skillLabel} htmlFor={`skill-${skill.id}`}>
-                <input
-                  id={`skill-${skill.id}`}
-                  className={styles.checkbox}
-                  type="checkbox"
-                  checked={enabledSkills[skill.id]}
-                  onChange={() => onToggleSkill(skill.id)}
-                />
-                <span className={styles.skillName}>{skill.name}</span>
-              </label>
-              <p className={styles.skillDesc}>{skill.description}</p>
-            </li>
-          ))}
-        </ul>
       </div>
     </aside>
   );

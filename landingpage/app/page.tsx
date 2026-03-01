@@ -12,18 +12,15 @@ const LOBE_ICON_CDN = "https://unpkg.com/@lobehub/icons-static-svg@latest/icons"
 const SIMPLE_ICON_CDN = "https://cdn.simpleicons.org";
 const GITHUB_URL = "https://github.com/sorphwer/json-render-cli";
 const INSTALL_COMMAND =
-  "curl -fsSL https://raw.githubusercontent.com/sorphwer/json-render-cli/main/scripts/install.sh | bash";
-const AGENT_INSTALL_HINT_PREFIX = "or";
-const AGENT_INSTALL_HINT =
-  " tell your agent: install skills from sorphwer/json-render-cli.git";
+  "install skill from sorphwer/json-render-cli: npm/skills/use-json-render-cli";
 const AGENT_STEPS = [
   {
-    title: "Run the skill installer",
-    detail: "One command installs all skills to ~/.openclaw/skills/."
+    title: "Install the unified skill",
+    detail: "Use one command in your agent to install use-json-render-cli from this GitHub repo."
   },
   {
-    title: "Chat with Agent using installed skills",
-    detail: "Request image rendering directly; skills will bootstrap runtime if needed."
+    title: "Chat with Agent directly",
+    detail: "Request image rendering directly; the installed skill routes to the right template."
   },
   {
     title: "Render and iterate",
@@ -77,9 +74,6 @@ export default function Home() {
       >
         <div className={styles.installBar}>
           <code className={styles.installCommand}>{INSTALL_COMMAND}</code>
-          <span className={styles.installAgent}>
-            <span className={styles.installOr}>{AGENT_INSTALL_HINT_PREFIX}</span>{AGENT_INSTALL_HINT}
-          </span>
         </div>
 
         <div className={styles.headerActions}>
