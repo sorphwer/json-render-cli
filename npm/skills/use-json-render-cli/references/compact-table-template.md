@@ -1,26 +1,37 @@
-# Compact Ticket Table Command Template (No Temp JSON Files)
+# Compact Generic Table Template (No Temp JSON Files)
+
+Use this starter to render a compact six-column table and adapt field values for your dataset.
 
 ## 1) Fill values
 
 ```bash
-export ID="#1236"
-export PRIORITY="HIGH"
-export STATUS="OPEN"
-export ASSIGNEE="Riino"
-export UPDATED_AT="Mon 14:34"
-export TOPIC="plugin-daemon Redis connectivity issue"
-export OUT_PATH="${OUT_PATH:-/tmp/ticket-table.png}"
+export ID="#1094"
+export PRIORITY="MEDIUM"
+export STATUS="IN REVIEW"
+export ASSIGNEE="Maya"
+export UPDATED_AT="Tue 10:22"
+export TOPIC="Checkout retry logic verification"
+export OUT_PATH="${OUT_PATH:-/tmp/table-render.png}"
 
 if ! command -v json-render >/dev/null 2>&1; then
   npm i -g json-render-cli
 fi
 export JSON_RENDER_CMD="${JSON_RENDER_CMD:-json-render}"
 
+# Ensure Playwright Chromium is available for screenshots
+PW_CHROMIUM_DIR="$(
+  npx --yes playwright install --dry-run chromium 2>/dev/null \
+    | awk -F': +' '/chromium v/ { seen=1 } seen && /Install location:/ { print $2; exit }'
+)"
+if [ -z "${PW_CHROMIUM_DIR:-}" ] || [ ! -d "$PW_CHROMIUM_DIR" ]; then
+  npx --yes playwright install chromium
+fi
+
 if [ -z "${SPEC_PATH:-}" ]; then
   for candidate in \
-    "${CODEX_HOME:-$HOME/.codex}/skills/json-render-ticket-table/references/compact-ticket-spec.template.json" \
-    "./npm/skills/json-render-ticket-table/references/compact-ticket-spec.template.json" \
-    "./skills/json-render-ticket-table/references/compact-ticket-spec.template.json"
+    "${CODEX_HOME:-$HOME/.codex}/skills/use-json-render-cli/references/compact-table-spec.template.json" \
+    "./npm/skills/use-json-render-cli/references/compact-table-spec.template.json" \
+    "./skills/use-json-render-cli/references/compact-table-spec.template.json"
   do
     if [ -f "$candidate" ]; then
       export SPEC_PATH="$candidate"
@@ -29,7 +40,7 @@ if [ -z "${SPEC_PATH:-}" ]; then
   done
 fi
 if [ -z "${SPEC_PATH:-}" ] || [ ! -f "$SPEC_PATH" ]; then
-  echo "Cannot find compact-ticket-spec.template.json. Set SPEC_PATH explicitly." >&2
+  echo "Cannot find compact-table-spec.template.json. Set SPEC_PATH explicitly." >&2
   exit 1
 fi
 
@@ -65,18 +76,18 @@ fi
 MESSAGE_JSON="$(python3 - <<'PY'
 import json, pathlib, os
 p = pathlib.Path(os.environ["SPEC_PATH"])
-tpl = p.read_text(encoding='utf-8')
+tpl = p.read_text(encoding="utf-8")
 m = {
-  '__ID__': os.environ['ID'],
-  '__PRIORITY__': os.environ['PRIORITY'],
-  '__STATUS__': os.environ['STATUS'],
-  '__ASSIGNEE__': os.environ['ASSIGNEE'],
-  '__UPDATED_AT__': os.environ['UPDATED_AT'],
-  '__TOPIC__': os.environ['TOPIC'],
+  "__ID__": os.environ["ID"],
+  "__PRIORITY__": os.environ["PRIORITY"],
+  "__STATUS__": os.environ["STATUS"],
+  "__ASSIGNEE__": os.environ["ASSIGNEE"],
+  "__UPDATED_AT__": os.environ["UPDATED_AT"],
+  "__TOPIC__": os.environ["TOPIC"],
 }
 for k, v in m.items():
   tpl = tpl.replace(k, json.dumps(v, ensure_ascii=False)[1:-1])
-tpl = tpl.replace('__TOPIC_COL_WIDTH__', str(int(os.environ['TOPIC_COL_WIDTH'])))
+tpl = tpl.replace("__TOPIC_COL_WIDTH__", str(int(os.environ["TOPIC_COL_WIDTH"])))
 print(tpl)
 PY
 )"
@@ -106,3 +117,5 @@ JSON
 ```
 
 If this command is executed by a sub-agent, keep `"$OUT_PATH"` and let the main agent decide final cleanup.
+
+For ticket-focused output with opinionated field semantics, use `use-json-render-cli` (ticket-table use case).

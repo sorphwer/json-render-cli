@@ -1,13 +1,15 @@
 {
   "name": "json-render-cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "CLI for rendering JSON UI spec to PNG via json-render and Playwright",
   "main": "dist/index.js",
   "scripts": {
     "test": "vitest run",
     "build": "tsc -p tsconfig.json",
     "dev": "tsx src/cli.ts",
-    "start": "node dist/cli.js"
+    "start": "node dist/cli.js",
+    "release:check": "npm run build && npm test && npm pack --dry-run",
+    "release:latest": "npm run release:check && npm publish --tag latest"
   },
   "keywords": [],
   "author": "",

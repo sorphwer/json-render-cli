@@ -1,0 +1,59 @@
+{
+  "columns": {
+    "id": { "title": "ID", "width": 92 },
+    "priority": { "title": "Priority", "width": 108 },
+    "status": { "title": "Status", "width": 94 },
+    "assignee": { "title": "Assignee", "width": 140 },
+    "updated": { "title": "Updated (UTC)", "width": 180 },
+    "subject": {
+      "title": "Subject",
+      "minWidth": 360,
+      "maxWidth": 960,
+      "unitPx": 8,
+      "paddingPx": 48,
+      "minUnitsPerLine": 22
+    }
+  },
+  "text": {
+    "headerSize": 13,
+    "cellSize": 14,
+    "badgeSize": 11,
+    "rowLineHeight": 22,
+    "maxSubjectLines": 3,
+    "rowPaddingY": 12,
+    "headerPaddingY": 10
+  },
+  "style": {
+    "tableBorder": "#cbd5e1",
+    "headerBackground": "#f1f5f9",
+    "headerText": "#334155",
+    "cellText": "#0f172a",
+    "mutedText": "#334155",
+    "rowDivider": "#e2e8f0"
+  },
+  "priorityPalette": {
+    "high": { "background": "#fee2e2", "color": "#b91c1c" },
+    "urgent": { "background": "#fee2e2", "color": "#991b1b" },
+    "normal": { "background": "#fef3c7", "color": "#92400e" },
+    "medium": { "background": "#fef3c7", "color": "#92400e" },
+    "low": { "background": "#dbeafe", "color": "#1d4ed8" },
+    "default": { "background": "#e2e8f0", "color": "#334155" }
+  },
+  "statusPalette": {
+    "pending": { "background": "#fef3c7", "color": "#92400e" },
+    "open": { "background": "#dbeafe", "color": "#1d4ed8" },
+    "solved": { "background": "#dcfce7", "color": "#166534" },
+    "closed": { "background": "#e2e8f0", "color": "#334155" },
+    "inprogress": { "background": "#e0e7ff", "color": "#3730a3" },
+    "inreview": { "background": "#fce7f3", "color": "#9d174d" },
+    "default": { "background": "#e2e8f0", "color": "#334155" }
+  },
+  "aliases": {
+    "id": ["id", "ticket_id", "issue_id", "number"],
+    "priority": ["priority", "prio", "severity"],
+    "status": ["status", "state"],
+    "assignee": ["assignee", "owner", "assigned_to", "agent"],
+    "updated": ["updated", "updated_at", "updated_utc", "updated_utc_time", "last_updated", "updatedutc"],
+    "subject": ["subject", "topic", "title", "summary"]
+  }
+}

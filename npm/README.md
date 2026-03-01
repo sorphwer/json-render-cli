@@ -165,20 +165,22 @@ npm test
 
 Integration screenshot test runs only when Playwright Chromium binary is available.
 
+## Release
+
+```bash
+npm run release:check
+npm run release:latest
+```
+
+`release:check` runs build + tests + `npm pack --dry-run`.
+`release:latest` publishes with `--tag latest` after checks pass.
+
 ## Packaged skills
 
-This package ships with five reusable Codex skills:
+This package ships with one reusable Codex skill:
 
-- `skills/json-render-table/SKILL.md` (generic table rendering)
-- `skills/json-render-ticket-table/SKILL.md` (ticket-focused table rendering)
-- `skills/json-render-info-cards/SKILL.md` (KPI and summary card rendering)
-- `skills/json-render-announcement-cards/SKILL.md` (announcement and hero card rendering)
-- `skills/json-render-flow-summary/SKILL.md` (step and timeline summary rendering)
+- `skills/use-json-render-cli/SKILL.md` (unified router for table, ticket-table, info-cards, announcement-cards, and flow-summary use cases)
 
 After global install (`npm i -g json-render-cli`), you can find it under your global `node_modules` path, for example:
 
-- `$(npm root -g)/json-render-cli/skills/json-render-table/SKILL.md`
-- `$(npm root -g)/json-render-cli/skills/json-render-ticket-table/SKILL.md`
-- `$(npm root -g)/json-render-cli/skills/json-render-info-cards/SKILL.md`
-- `$(npm root -g)/json-render-cli/skills/json-render-announcement-cards/SKILL.md`
-- `$(npm root -g)/json-render-cli/skills/json-render-flow-summary/SKILL.md`
+- `$(npm root -g)/json-render-cli/skills/use-json-render-cli/SKILL.md`

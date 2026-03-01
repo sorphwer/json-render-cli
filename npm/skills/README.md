@@ -4,13 +4,9 @@ These skills are designed for Codex and are hosted in this GitHub repository und
 
 ## Available skills
 
-- `json-render-table`
-- `json-render-ticket-table`
-- `json-render-info-cards`
-- `json-render-announcement-cards`
-- `json-render-flow-summary`
+- `use-json-render-cli`
 
-Each skill folder contains a `SKILL.md` plus optional `references/` and `agents/` files.
+The skill folder contains a `SKILL.md`, `references/`, and `agents/openai.yaml`.
 
 ## Install from GitHub
 
@@ -20,10 +16,10 @@ Install all skills with one command:
 node scripts/install-skills.mjs --all
 ```
 
-Install specific skills:
+Install the skill explicitly:
 
 ```bash
-node scripts/install-skills.mjs --skill json-render-table --skill json-render-flow-summary
+node scripts/install-skills.mjs --skill use-json-render-cli
 ```
 
 Run interactively to pick which skills to install:
@@ -57,8 +53,8 @@ npx playwright install chromium
 
 ```text
 npm/skills/
-  json-render-*/
+  use-json-render-cli/
     SKILL.md
     agents/openai.yaml
-    references/* (template commands and JSON specs)
+    references/* (routing guides, command templates, JSON specs)
 ```

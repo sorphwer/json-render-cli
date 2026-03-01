@@ -19,7 +19,8 @@ Publish from `npm/`:
 
 ```bash
 cd npm
-npm publish
+npm run release:check
+npm run release:latest
 ```
 
 ## Landing page (`landingpage/`)
@@ -34,10 +35,6 @@ npm run dev
 
 Codex skills live under `npm/skills/`.
 
-- `npm/skills/json-render-table`
-- `npm/skills/json-render-ticket-table`
-- `npm/skills/json-render-info-cards`
-- `npm/skills/json-render-announcement-cards`
-- `npm/skills/json-render-flow-summary`
+- `npm/skills/use-json-render-cli`
 
 See `npm/skills/README.md` for GitHub installation and usage details.

@@ -21,11 +21,7 @@ const API_BASE = `https://api.github.com/repos/${REPO}/contents`;
 const DEFAULT_DEST = join(homedir(), ".openclaw", "skills");
 
 const SKILLS = [
-  "json-render-table",
-  "json-render-ticket-table",
-  "json-render-info-cards",
-  "json-render-announcement-cards",
-  "json-render-flow-summary",
+  "use-json-render-cli",
 ];
 
 // ── CLI arg parsing ──────────────────────────────────────────────────
@@ -189,7 +185,7 @@ async function interactiveMenu(dest) {
   }
 
   if (trimmed === "n" || trimmed === "no") {
-    const selection = await prompt(rl, "Enter skill numbers (comma-separated, e.g. 1,3,5): ");
+    const selection = await prompt(rl, "Enter skill numbers (comma-separated, e.g. 1): ");
     rl.close();
 
     const indices = selection

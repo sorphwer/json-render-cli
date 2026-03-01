@@ -30,11 +30,20 @@ if ! command -v json-render >/dev/null 2>&1; then
 fi
 export JSON_RENDER_CMD="${JSON_RENDER_CMD:-json-render}"
 
+# Ensure Playwright Chromium is available for screenshots
+PW_CHROMIUM_DIR="$(
+  npx --yes playwright install --dry-run chromium 2>/dev/null \
+    | awk -F': +' '/chromium v/ { seen=1 } seen && /Install location:/ { print $2; exit }'
+)"
+if [ -z "${PW_CHROMIUM_DIR:-}" ] || [ ! -d "$PW_CHROMIUM_DIR" ]; then
+  npx --yes playwright install chromium
+fi
+
 if [ -z "${SPEC_PATH:-}" ]; then
   for candidate in \
-    "${CODEX_HOME:-$HOME/.codex}/skills/json-render-flow-summary/references/flow-summary-spec.template.json" \
-    "./npm/skills/json-render-flow-summary/references/flow-summary-spec.template.json" \
-    "./skills/json-render-flow-summary/references/flow-summary-spec.template.json"
+    "${CODEX_HOME:-$HOME/.codex}/skills/use-json-render-cli/references/flow-summary-spec.template.json" \
+    "./npm/skills/use-json-render-cli/references/flow-summary-spec.template.json" \
+    "./skills/use-json-render-cli/references/flow-summary-spec.template.json"
   do
     if [ -f "$candidate" ]; then
       export SPEC_PATH="$candidate"
