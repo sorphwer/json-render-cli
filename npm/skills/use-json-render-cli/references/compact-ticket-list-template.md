@@ -5,10 +5,14 @@ Use this when you need a ticket table with multiple rows and stable rendering fo
 ## 1) Fill values
 
 ```bash
-export ROWS_JSON='[
-  {"ID": "1395", "Priority": "high", "Status": "pending", "Assignee": "Yiliazhang", "Updated (UTC)": "2026-02-28 07:52:09", "Subject": "帮确认下插件基础镜像安装tiktoken 这个dockerfile没问题吧"},
-  {"ID": "1394", "Priority": "low", "Status": "solved", "Assignee": "Zishuo", "Updated (UTC)": "2026-02-28 04:13:31", "Subject": "后台管理 -凭据管理"}
-]'
+set -euo pipefail
+
+if [ -z "${ROWS_JSON:-}" ]; then
+  export ROWS_JSON='[
+    {"ID": "1395", "Priority": "high", "Status": "pending", "Assignee": "Yiliazhang", "Updated (UTC)": "2026-02-28 07:52:09", "Subject": "帮确认下插件基础镜像安装tiktoken 这个dockerfile没问题吧"},
+    {"ID": "1394", "Priority": "low", "Status": "solved", "Assignee": "Zishuo", "Updated (UTC)": "2026-02-28 04:13:31", "Subject": "后台管理 -凭据管理"}
+  ]'
+fi
 
 export OUT_PATH="${OUT_PATH:-/tmp/ticket-list-table.png}"
 export THEME_MODE="${THEME_MODE:-system}"
@@ -72,7 +76,7 @@ fi
 ## 2) Build message JSON in memory (with aliases, validation, and CJK-aware sizing)
 
 ```bash
-eval "$(python3 - <<'PY'
+if ! BUILD_EXPORTS="$(python3 - <<'PY'
 import base64
 import json
 import math
@@ -102,10 +106,10 @@ def merge_palette(defaults, override_text):
         return out
     override = json.loads(override_text)
     if not isinstance(override, dict):
-        raise ValueError("Palette override must be a JSON object")
+        raise SystemExit("Palette override must be a JSON object")
     for key, value in override.items():
         if not isinstance(value, dict) or "background" not in value or "color" not in value:
-            raise ValueError(
+            raise SystemExit(
                 f"Palette override for '{key}' must contain background and color fields"
             )
         out[str(key).lower()] = {
@@ -126,7 +130,7 @@ spec = json.loads(pathlib.Path(os.environ["SPEC_PATH"]).read_text(encoding="utf-
 rows = json.loads(os.environ["ROWS_JSON"])
 
 if not isinstance(rows, list) or not rows:
-    raise ValueError("ROWS_JSON must be a non-empty JSON array")
+    raise SystemExit("ROWS_JSON must be a non-empty JSON array")
 
 aliases = spec["aliases"]
 required_fields = ["id", "priority", "status", "assignee", "updated", "subject"]
@@ -172,7 +176,7 @@ for i, row in enumerate(rows, start=1):
         normalized_rows.append(normalized)
 
 if errors:
-    raise ValueError("Input validation failed:\n- " + "\n- ".join(errors))
+    raise SystemExit("Input validation failed:\n- " + "\n- ".join(errors))
 
 columns = spec["columns"]
 text_cfg = spec["text"]
@@ -408,14 +412,22 @@ print(f"export VIEWPORT_HEIGHT={int(viewport_height)}")
 print(f"export MESSAGE_JSON_B64='{payload}'")
 PY
 )"
+then
+  exit 1
+fi
 
-MESSAGE_JSON="$(python3 - <<'PY'
+eval "$BUILD_EXPORTS"
+
+if ! MESSAGE_JSON="$(python3 - <<'PY'
 import base64
 import os
 
 print(base64.b64decode(os.environ["MESSAGE_JSON_B64"]).decode("utf-8"))
 PY
 )"
+then
+  exit 1
+fi
 ```
 
 ## 3) Render
@@ -467,8 +479,8 @@ PY
     fi
   }
 
-  snap_a="$(mktemp /tmp/ticket-list-snap-a.XXXXXX.png)"
-  snap_b="$(mktemp /tmp/ticket-list-snap-b.XXXXXX.png)"
+  snap_a="$(mktemp "${TMPDIR:-/tmp}/ticket-list-snap-a.XXXXXX")"
+  snap_b="$(mktemp "${TMPDIR:-/tmp}/ticket-list-snap-b.XXXXXX")"
 
   render_png "$snap_a"
   render_png "$snap_b"
