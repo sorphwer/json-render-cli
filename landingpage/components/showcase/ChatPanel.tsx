@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpRight, DiamondsFour, PaperPlaneTilt, UserCircle } from "@phosphor-icons/react";
 import { useEffect, useRef } from "react";
 import type { WheelEvent as ReactWheelEvent } from "react";
 
@@ -80,6 +81,13 @@ export function ChatPanel({
 
   return (
     <div className={styles.panel} onWheelCapture={handlePanelWheelCapture} data-wheel-scope="chat">
+      <div className={styles.panelHeader}>
+        <div className={styles.panelHeaderCopy}>
+          <p className={styles.panelEyebrow}>Live Conversation</p>
+          <p className={styles.panelTitle}>The agent routes the prompt, prepares JSON, and returns a reviewable PNG.</p>
+        </div>
+      </div>
+
       {/* Message history */}
       <div className={styles.history} ref={historyRef} aria-live="polite">
         {messages.map((message, index) => {
@@ -94,14 +102,14 @@ export function ChatPanel({
               >
                 {!grouped && (
                   <span className={`${styles.avatar} ${styles.agentAvatar}`} aria-hidden="true">
-                    ✦
+                    <DiamondsFour className={styles.avatarIcon} weight="duotone" />
                   </span>
                 )}
                 <div className={styles.messageBody} style={grouped ? { paddingLeft: 52 } : undefined}>
                   {!grouped && (
                     <div className={styles.messageHeader}>
-                      <span className={styles.usernameAgent}>Skill Agent</span>
-                      <span className={styles.timestamp}>Today</span>
+                      <span className={styles.usernameAgent}>Render Agent</span>
+                      <span className={styles.timestamp}>Live demo</span>
                     </div>
                   )}
                   <div className={styles.messageContent}>
@@ -121,14 +129,14 @@ export function ChatPanel({
               >
                 {!grouped && (
                   <span className={`${styles.avatar} ${styles.userAvatar}`} aria-hidden="true">
-                    U
+                    <UserCircle className={styles.avatarIcon} weight="duotone" />
                   </span>
                 )}
                 <div className={styles.messageBody} style={grouped ? { paddingLeft: 52 } : undefined}>
                   {!grouped && (
                     <div className={styles.messageHeader}>
                       <span className={styles.usernameUser}>You</span>
-                      <span className={styles.timestamp}>Today</span>
+                      <span className={styles.timestamp}>Selected prompt</span>
                     </div>
                   )}
                   <div className={styles.messageContent}>{message.text}</div>
@@ -143,22 +151,22 @@ export function ChatPanel({
           return (
             <div
               key={message.id}
-              className={`${styles.messageRow} ${grouped ? styles.grouped : ""}`}
-            >
+            className={`${styles.messageRow} ${grouped ? styles.grouped : ""}`}
+          >
+            {!grouped && (
+              <span className={`${styles.avatar} ${styles.agentAvatar}`} aria-hidden="true">
+                <DiamondsFour className={styles.avatarIcon} weight="duotone" />
+              </span>
+            )}
+            <div className={styles.messageBody} style={grouped ? { paddingLeft: 52 } : undefined}>
               {!grouped && (
-                <span className={`${styles.avatar} ${styles.agentAvatar}`} aria-hidden="true">
-                  ✦
-                </span>
+                <div className={styles.messageHeader}>
+                    <span className={styles.usernameAgent}>Render Agent</span>
+                    {skill && <span className={styles.botBadge}>{skill.name}</span>}
+                    <span className={styles.timestamp}>Preview ready</span>
+                </div>
               )}
-              <div className={styles.messageBody} style={grouped ? { paddingLeft: 52 } : undefined}>
-                {!grouped && (
-                  <div className={styles.messageHeader}>
-                    <span className={styles.usernameAgent}>Skill Agent</span>
-                    {skill && <span className={styles.botBadge}>BOT</span>}
-                    <span className={styles.timestamp}>Today</span>
-                  </div>
-                )}
-                {message.text && <div className={styles.messageContent}>{message.text}</div>}
+              {message.text && <div className={styles.messageContent}>{message.text}</div>}
                 {skill && message.imageMode && (
                   <div className={styles.imageWrapper}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -177,7 +185,7 @@ export function ChatPanel({
         })}
       </div>
 
-      {/* Composer — Discord style */}
+      {/* Composer - Discord style */}
       <div className={styles.composer}>
         <div className={styles.composerInner}>
           <textarea
@@ -186,7 +194,7 @@ export function ChatPanel({
             value={currentPromptText}
             readOnly
             rows={2}
-            placeholder="Message #skills-sandbox"
+            placeholder="Pick a prompt, then send it."
             aria-label="Generated prompt"
           />
           <button
@@ -194,9 +202,11 @@ export function ChatPanel({
             className={styles.sendButton}
             onClick={onSend}
             disabled={!canSend || isSending}
-            aria-label="Send message"
+            aria-label="Render preview card"
           >
-            {isSending ? "..." : "SEND"}
+            <PaperPlaneTilt className={styles.sendIcon} aria-hidden="true" weight="fill" />
+            {isSending ? "Rendering..." : "Render card"}
+            {!isSending && <ArrowUpRight className={styles.sendArrow} aria-hidden="true" />}
           </button>
         </div>
       </div>

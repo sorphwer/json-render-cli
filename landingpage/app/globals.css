@@ -1,18 +1,22 @@
 :root {
-  --vi-black: #000000;
-  --vi-gray: #808080;
-  --vi-white: #ffffff;
-  --vi-blue-dark: #0070c9;
-  --vi-warning-pink: #e83e8c;
+  --vi-black: #07090d;
+  --vi-gray: #131923;
+  --vi-white: #f4f7fb;
+  --vi-blue-dark: #0b74d1;
+  --vi-warning-pink: #d9659c;
   --color-ink: var(--vi-white);
-  --color-ink-soft: #c7c7c7;
+  --color-ink-soft: rgba(219, 227, 240, 0.76);
+  --color-ink-faint: rgba(219, 227, 240, 0.56);
   --color-accent: var(--vi-blue-dark);
   --color-warning: var(--vi-warning-pink);
-  --color-border: rgba(255, 255, 255, 0.17);
-  --color-border-strong: rgba(255, 255, 255, 0.28);
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-strong: rgba(255, 255, 255, 0.2);
   --color-cloud: rgba(255, 255, 255, 0.06);
-  --shadow-soft: 0 16px 34px rgba(0, 0, 0, 0.45);
-  --shadow-lift: 0 30px 74px rgba(0, 0, 0, 0.58);
+  --color-panel: rgba(13, 18, 26, 0.72);
+  --color-panel-strong: rgba(10, 14, 20, 0.92);
+  --shadow-soft: 0 18px 44px rgba(3, 8, 15, 0.38);
+  --shadow-lift: 0 34px 90px rgba(2, 7, 14, 0.56);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -39,9 +43,9 @@ body {
   color: var(--color-ink);
   min-height: 100vh;
   background:
-    radial-gradient(circle at 18% -8%, rgba(255, 255, 255, 0.14), transparent 38%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.74)),
-    var(--vi-gray);
+    radial-gradient(circle at 18% -8%, rgba(255, 255, 255, 0.12), transparent 36%),
+    linear-gradient(180deg, rgba(8, 12, 18, 0.72), rgba(5, 8, 12, 0.92)),
+    linear-gradient(135deg, #0d131c, #121926 58%, #0b1118);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   position: relative;
@@ -81,7 +85,7 @@ body::after {
       rgba(232, 62, 140, 0.08) 36%,
       transparent 66%
     ),
-    radial-gradient(circle at center, transparent 58%, rgba(0, 0, 0, 0.48));
+    radial-gradient(circle at center, transparent 58%, rgba(6, 8, 12, 0.54));
   animation: glowOrbit 16s ease-in-out infinite;
   will-change: background-image;
 }
@@ -98,7 +102,7 @@ textarea {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid rgba(11, 116, 209, 0.82);
   outline-offset: 2px;
 }
 

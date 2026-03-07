@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Outfit } from "next/font/google";
 
 import "./globals.css";
 
@@ -15,10 +15,16 @@ const geistMono = Geist_Mono({
   display: "swap"
 });
 
+const outfit = Outfit({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap"
+});
+
 export const metadata: Metadata = {
-  title: "json-render-cli Skills Showcase",
+  title: "json-render-cli | Prompt-to-PNG for Agents",
   description:
-    "Interactive landing page for json-render-cli skills with a fake chat showcase, prompt draw flow, and theme-aware static previews."
+    "Install one skill, route prompt requests to reusable JSON templates, and return polished PNG outputs directly from your agent workflow."
 };
 
 export default function RootLayout({
@@ -28,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geist.variable} ${geistMono.variable}`}>{children}</body>
+      <body className={`${geist.variable} ${geistMono.variable} ${outfit.variable}`}>{children}</body>
     </html>
   );
 }

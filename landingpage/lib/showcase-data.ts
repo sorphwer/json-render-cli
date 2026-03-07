@@ -4,7 +4,7 @@ export const SKILLS: SkillDef[] = [
   {
     id: "json-render-table",
     name: "JSON Render Table",
-    description: "Compact generic data tables as PNG snapshots.",
+    description: "Compact status tables for quick updates.",
     imageByMode: {
       light: "/showcase/light/json-render-table.png",
       dark: "/showcase/dark/json-render-table.png"
@@ -13,7 +13,7 @@ export const SKILLS: SkillDef[] = [
   {
     id: "json-render-ticket-table",
     name: "Ticket Table",
-    description: "Issue and incident board snapshots with stable columns.",
+    description: "Incident and triage snapshots with stable columns.",
     imageByMode: {
       light: "/showcase/light/json-render-ticket-table.png",
       dark: "/showcase/dark/json-render-ticket-table.png"
@@ -22,7 +22,7 @@ export const SKILLS: SkillDef[] = [
   {
     id: "json-render-info-cards",
     name: "Info Cards",
-    description: "KPI, comparison, and daily summary cards.",
+    description: "KPI strips for weekly and monthly check-ins.",
     imageByMode: {
       light: "/showcase/light/json-render-info-cards.png",
       dark: "/showcase/dark/json-render-info-cards.png"
@@ -31,7 +31,7 @@ export const SKILLS: SkillDef[] = [
   {
     id: "json-render-announcement-cards",
     name: "Announcement Cards",
-    description: "Launch and hero visuals for communication.",
+    description: "Release cards for launches and internal comms.",
     imageByMode: {
       light: "/showcase/light/json-render-announcement-cards.png",
       dark: "/showcase/dark/json-render-announcement-cards.png"
@@ -40,7 +40,7 @@ export const SKILLS: SkillDef[] = [
   {
     id: "json-render-flow-summary",
     name: "Flow Summary",
-    description: "Timeline and step-based process summaries.",
+    description: "Milestone and lifecycle summaries in one frame.",
     imageByMode: {
       light: "/showcase/light/json-render-flow-summary.png",
       dark: "/showcase/dark/json-render-flow-summary.png"
@@ -62,22 +62,22 @@ export const PROMPTS: PromptDef[] = [
   {
     id: "table-1",
     skillId: "json-render-table",
-    text: "Please render this regional revenue sheet as a compact table PNG with Region, Revenue, QoQ, Owner, and Health columns."
+    text: "Render this regional revenue update as a compact PNG table with Region, Revenue, QoQ, Owner, and Health columns."
   },
   {
     id: "table-2",
     skillId: "json-render-table",
-    text: "Make a clean table snapshot for North America ($2.4M), EMEA ($1.6M), and APAC ($1.1M) with QoQ and health badges."
+    text: "Create a clean table snapshot for North America ($2.4M), EMEA ($1.6M), and APAC ($1.1M) with QoQ and health badges."
   },
   {
     id: "table-3",
     skillId: "json-render-table",
-    text: "Turn this partner revenue update into a fixed-width table image where health stays readable as Strong/Watch badges."
+    text: "Turn this partner revenue update into a fixed-width table image where Strong and Watch badges stay readable."
   },
   {
     id: "ticket-1",
     skillId: "json-render-ticket-table",
-    text: "Render a ticket status table with ID, Priority, Status, Assignee, Updated, and Topic columns for INC-412 to INC-414."
+    text: "Render a ticket status table with ID, Priority, Status, Assignee, Updated, and Topic columns for INC-412 through INC-414."
   },
   {
     id: "ticket-2",
@@ -87,7 +87,7 @@ export const PROMPTS: PromptDef[] = [
   {
     id: "ticket-3",
     skillId: "json-render-ticket-table",
-    text: "Build a triage table PNG for Luna, Diego, and Ari with deterministic widths so the topic column stays legible."
+    text: "Build a triage table PNG for Luna, Diego, and Ari with deterministic widths so the Topic column stays legible."
   },
   {
     id: "info-1",
@@ -97,32 +97,32 @@ export const PROMPTS: PromptDef[] = [
   {
     id: "info-2",
     skillId: "json-render-info-cards",
-    text: "Create a compact KPI card set with $4.8M ARR, 68.2% Activation, and 1.9% Churn plus delta badges."
+    text: "Create a compact KPI card set with $4.8M ARR, 68.2% activation, and 1.9% churn plus delta badges."
   },
   {
     id: "info-3",
     skillId: "json-render-info-cards",
-    text: "Render a single-row KPI snapshot with three cards and clear positive/negative deltas for quick updates."
+    text: "Render a single-row KPI snapshot with three cards and clear positive and negative deltas for a quick update."
   },
   {
     id: "announce-1",
     skillId: "json-render-announcement-cards",
-    text: "Generate a launch-week announcement hero card with a bold headline, short body copy, and a \"Try the Showcase\" CTA."
+    text: "Generate a launch-week announcement card with one bold headline, short support copy, and a \"Try the Showcase\" CTA."
   },
   {
     id: "announce-2",
     skillId: "json-render-announcement-cards",
-    text: "Build a release promo card PNG that says \"New Skills for json-render-cli\" with one clear button and strong hierarchy."
+    text: "Build a release promo PNG that says \"New Skills for json-render-cli\" with one clear button and strong hierarchy."
   },
   {
     id: "announce-3",
     skillId: "json-render-announcement-cards",
-    text: "Create a gradient announcement card with a Launch Week badge, one headline block, and concise supporting copy."
+    text: "Create an announcement card with a Launch Week badge, one headline block, and concise supporting copy."
   },
   {
     id: "flow-1",
     skillId: "json-render-flow-summary",
-    text: "Render a three-stage flow summary image with DONE, IN PROGRESS, and BLOCKED states."
+    text: "Render a three-stage flow summary image with Done, In Progress, and Blocked states."
   },
   {
     id: "flow-2",

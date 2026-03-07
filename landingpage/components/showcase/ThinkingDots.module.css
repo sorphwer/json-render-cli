@@ -21,6 +21,13 @@
   animation-delay: 0.3s;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
 @keyframes pulse {
   0%,
   100% {

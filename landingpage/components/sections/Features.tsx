@@ -1,10 +1,10 @@
-import { Braces, MessageSquareText, Terminal } from "lucide-react";
+import { BracketsCurly, ChatsCircle, CheckCircle, TerminalWindow } from "@phosphor-icons/react/ssr";
 
 import styles from "./Features.module.css";
 
 const OUTPUT_PATH = "landingpage/public/showcase/dark/any-ui-you-want-1x4-tight-half.png";
-const CHAT_PROMPT = 'Render "Any UI You Want" as a dark four-column PNG card.';
-const AGENT_REPLY = "I will create the JSON spec first, then run one CLI command.";
+const CHAT_PROMPT = 'Render "Any UI You Want" as a dark four-column PNG card for a launch recap.';
+const AGENT_REPLY = "I drafted the JSON spec first, then ran one render command.";
 
 const JSON_SPEC_PREVIEW = `{
   "root": {
@@ -26,81 +26,64 @@ export function Features() {
   return (
     <section id="skills" className={styles.section}>
       <div className={styles.head}>
-        <p className={styles.kicker}>How it works</p>
-        <h2 className={styles.title}>Prompt in chat, JSON by agent, one CLI render.</h2>
-        <p className={styles.subtitle}>
-          Compared with writing HTML/CSS from scratch, this flow typically uses about{" "}
-          <strong>
-            <u>60-75% fewer tokens</u>
-          </strong>
-          , and a{" "}
-          <strong>
-            <u>persistent config</u>
-          </strong>{" "}
-          keeps visual style consistent for faster, repeatable rendering.
-        </p>
+        <p className={styles.kicker}>Workflow</p>
+        <h2 className={styles.title}>From prompt to PNG, without hand-building a web page.</h2>
       </div>
 
-      <div className={styles.stack}>
-        <article className={`${styles.stepCard} ${styles.chatStep}`}>
-          <header className={styles.stepHeader}>
-            <span className={styles.stepIndex} aria-hidden="true">
-              1
-            </span>
-            <div className={styles.stepMeta}>
-              <p className={styles.stepKicker}>Step 1</p>
-              <h3 className={styles.stepTitle}>
-                <MessageSquareText className={styles.stepIcon} aria-hidden="true" />
-                Send prompt in chat
+      <div className={styles.grid}>
+        <article className={`${styles.featureCard} ${styles.storyCard}`}>
+          <header className={styles.featureHeader}>
+            <span className={styles.featureIndex}>01</span>
+            <div className={styles.featureMeta}>
+              <p className={styles.featureEyebrow}>Ask</p>
+              <h3 className={styles.featureTitle}>
+                <ChatsCircle className={styles.featureIcon} aria-hidden="true" weight="duotone" />
+                Describe the artifact in plain language.
               </h3>
             </div>
           </header>
-          <p className={styles.stepNote}>User states intent in natural language.</p>
-          <div className={`${styles.innerCard} ${styles.chatCard}`}>
-            <p className={`${styles.chatBubble} ${styles.chatUser}`}>{CHAT_PROMPT}</p>
-            <p className={`${styles.chatBubble} ${styles.chatAgent}`}>{AGENT_REPLY}</p>
-          </div>
+          <div className={styles.bubble}>{CHAT_PROMPT}</div>
         </article>
 
-        <article className={`${styles.stepCard} ${styles.jsonStep}`}>
-          <header className={styles.stepHeader}>
-            <span className={styles.stepIndex} aria-hidden="true">
-              2
-            </span>
-            <div className={styles.stepMeta}>
-              <p className={styles.stepKicker}>Step 2</p>
-              <h3 className={styles.stepTitle}>
-                <Braces className={styles.stepIcon} aria-hidden="true" />
-                Agent generates JSON
+        <article className={`${styles.featureCard} ${styles.jsonCard}`}>
+          <header className={styles.featureHeader}>
+            <span className={styles.featureIndex}>02</span>
+            <div className={styles.featureMeta}>
+              <p className={styles.featureEyebrow}>Generate JSON</p>
+              <h3 className={styles.featureTitle}>
+                <BracketsCurly className={styles.featureIcon} aria-hidden="true" weight="duotone" />
+                Route the request to a structured spec.
               </h3>
             </div>
           </header>
-          <p className={styles.stepNote}>Structured spec is produced before rendering.</p>
-          <div className={styles.innerCard}>
-            <pre className={styles.jsonCode} aria-label="JSON content preview">
-              {JSON_SPEC_PREVIEW}
-            </pre>
-          </div>
+          <pre className={styles.jsonPreview} aria-label="JSON content preview">
+            {JSON_SPEC_PREVIEW}
+          </pre>
         </article>
 
-        <article className={`${styles.stepCard} ${styles.cliStep}`}>
-          <header className={styles.stepHeader}>
-            <span className={styles.stepIndex} aria-hidden="true">
-              3
-            </span>
-            <div className={styles.stepMeta}>
-              <p className={styles.stepKicker}>Step 3</p>
-              <h3 className={styles.stepTitle}>
-                <Terminal className={styles.stepIcon} aria-hidden="true" />
-                Agent runs one CLI line
+        <article className={`${styles.featureCard} ${styles.renderCard}`}>
+          <header className={styles.featureHeader}>
+            <span className={styles.featureIndex}>03</span>
+            <div className={styles.featureMeta}>
+              <p className={styles.featureEyebrow}>Render PNG</p>
+              <h3 className={styles.featureTitle}>
+                <TerminalWindow className={styles.featureIcon} aria-hidden="true" weight="duotone" />
+                Run one command and ship the result.
               </h3>
             </div>
           </header>
-          <p className={styles.stepNote}>JSON goes into a single executable command.</p>
-          <div className={`${styles.innerCard} ${styles.cliCard}`}>
-            <code className={styles.command}>{RENDER_COMMAND}</code>
-            <p className={styles.outputPath}>Output: {OUTPUT_PATH}</p>
-          </div>
+          <code className={styles.renderCommand}>{RENDER_COMMAND}</code>
+          <p className={styles.renderOutput}>Output path: {OUTPUT_PATH}</p>
+          <ul className={styles.renderList}>
+            <li>
+              <CheckCircle className={styles.renderListIcon} aria-hidden="true" weight="duotone" />
+              Reuse the same config so spacing, type, and color stay aligned.
+            </li>
+            <li>
+              <CheckCircle className={styles.renderListIcon} aria-hidden="true" weight="duotone" />
+              Drop the PNG into docs, chat, release notes, or status updates without rework.
+            </li>
+          </ul>
         </article>
       </div>
     </section>

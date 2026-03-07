@@ -35,12 +35,12 @@ export function ShowcaseShell() {
     {
       id: createId(),
       role: "user",
-      text: "Please install skill from GitHub path: sorphwer/json-render-cli -> npm/skills/use-json-render-cli"
+      text: "Install the use-json-render-cli skill from sorphwer/json-render-cli and keep the render templates ready."
     },
     {
       id: createId(),
       role: "agent",
-      text: "Done. use-json-render-cli is installed from npm/skills. It routes to the right template automatically."
+      text: "Installed. I can route requests to the matching template and return PNG previews in chat."
     }
   ]);
   const [currentPrompt, setCurrentPrompt] = useState<PromptDef | null>(INITIAL_PROMPT);
@@ -113,7 +113,7 @@ export function ShowcaseShell() {
     }, delay);
   }, [currentPrompt, isSending]);
 
-  const currentPromptText = currentPrompt?.text ?? "Prompt ready";
+  const currentPromptText = currentPrompt?.text ?? "Choose a prompt from the demo set.";
   const canSend = Boolean(currentPrompt);
 
   return (

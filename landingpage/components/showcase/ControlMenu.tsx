@@ -1,3 +1,4 @@
+import { MoonStars, Sun } from "@phosphor-icons/react";
 import { useRef } from "react";
 import type { WheelEvent as ReactWheelEvent } from "react";
 
@@ -43,8 +44,12 @@ export function ControlMenu({ imageMode, onChangeImageMode }: ControlMenuProps) 
       onWheelCapture={handlePanelWheelCapture}
       data-wheel-scope="control"
     >
+      <div className={styles.head}>
+        <p className={styles.groupLabel}>Preview Theme</p>
+        <p className={styles.groupDescription}>Switch the result card between light and dark without changing the prompt.</p>
+      </div>
+
       <div className={styles.group}>
-        <p className={styles.groupLabel}>Image Mode</p>
         <div className={styles.segmented} role="radiogroup" aria-label="Image mode">
           {(["light", "dark"] as const).map((mode) => (
             <button
@@ -54,10 +59,21 @@ export function ControlMenu({ imageMode, onChangeImageMode }: ControlMenuProps) 
               aria-pressed={imageMode === mode}
               onClick={() => onChangeImageMode(mode)}
             >
-              {mode === "light" ? "Light" : "Dark"}
+              {mode === "light" ? (
+                <>
+                  <Sun className={styles.segmentIcon} aria-hidden="true" weight="duotone" />
+                  Light
+                </>
+              ) : (
+                <>
+                  <MoonStars className={styles.segmentIcon} aria-hidden="true" weight="duotone" />
+                  Dark
+                </>
+              )}
             </button>
           ))}
         </div>
+        <p className={styles.helper}>Only the exported preview changes. The selected prompt stays the same.</p>
       </div>
     </aside>
   );
