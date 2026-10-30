@@ -28,7 +28,7 @@
 
 .panelEyebrow {
   font-family: var(--font-mono-alt);
-  font-size: 10px;
+  font-size: var(--type-label);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-ink-faint);
@@ -36,7 +36,7 @@
 
 .panelTitle {
   max-width: 56ch;
-  font-size: 13px;
+  font-size: var(--type-body);
   line-height: 1.5;
   color: var(--color-ink-soft);
 }
@@ -134,43 +134,25 @@
   display: flex;
   align-items: baseline;
   gap: 6px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   flex-wrap: wrap;
 }
 
 .usernameAgent {
-  font-size: 14px;
+  font-size: var(--type-ui);
   font-weight: 600;
   color: var(--color-ink);
 }
 
 .usernameUser {
-  font-size: 14px;
+  font-size: var(--type-ui);
   font-weight: 600;
   color: var(--color-ink-soft);
-}
-
-.botBadge {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--color-ink-soft);
-  text-transform: uppercase;
-}
-
-.timestamp {
-  font-size: 11px;
-  color: var(--color-ink-faint);
-  margin-left: 2px;
 }
 
 /* Message content */
 .messageContent {
-  font-size: 14px;
+  font-size: var(--type-body);
   line-height: 1.6;
   color: var(--color-ink-soft);
   word-break: break-word;
@@ -216,7 +198,7 @@
   border-radius: 16px;
   background: linear-gradient(180deg, rgba(11, 116, 209, 0.95), rgba(11, 116, 209, 0.78));
   color: var(--color-ink);
-  font-size: 12px;
+  font-size: var(--type-meta);
   font-weight: 700;
   letter-spacing: 0.04em;
   cursor: pointer;
@@ -254,7 +236,7 @@
   padding: 10px 10px 10px 12px;
   color: var(--color-ink);
   resize: none;
-  font-size: 15px;
+  font-size: var(--type-body);
   line-height: 1.45;
   font-family: inherit;
   min-width: 0;

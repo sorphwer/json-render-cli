@@ -109,7 +109,6 @@ export function ChatPanel({
                   {!grouped && (
                     <div className={styles.messageHeader}>
                       <span className={styles.usernameAgent}>Render Agent</span>
-                      <span className={styles.timestamp}>Live demo</span>
                     </div>
                   )}
                   <div className={styles.messageContent}>
@@ -136,7 +135,6 @@ export function ChatPanel({
                   {!grouped && (
                     <div className={styles.messageHeader}>
                       <span className={styles.usernameUser}>You</span>
-                      <span className={styles.timestamp}>Selected prompt</span>
                     </div>
                   )}
                   <div className={styles.messageContent}>{message.text}</div>
@@ -161,9 +159,7 @@ export function ChatPanel({
             <div className={styles.messageBody} style={grouped ? { paddingLeft: 52 } : undefined}>
               {!grouped && (
                 <div className={styles.messageHeader}>
-                    <span className={styles.usernameAgent}>Render Agent</span>
-                    {skill && <span className={styles.botBadge}>{skill.name}</span>}
-                    <span className={styles.timestamp}>Preview ready</span>
+                  <span className={styles.usernameAgent}>Render Agent</span>
                 </div>
               )}
               {message.text && <div className={styles.messageContent}>{message.text}</div>}

@@ -43,7 +43,7 @@
   height: 22px;
   padding: 0 8px;
   border-radius: 999px;
-  font-size: 10px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -59,7 +59,7 @@
   padding: 0;
   border: 0;
   background: transparent;
-  font-size: 12px;
+  font-size: var(--type-meta);
   letter-spacing: 0.05em;
   min-width: 4.8em;
   text-align: center;

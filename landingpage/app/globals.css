@@ -1,9 +1,9 @@
 :root {
-  --vi-black: #07090d;
-  --vi-gray: #131923;
-  --vi-white: #f4f7fb;
-  --vi-blue-dark: #0b74d1;
-  --vi-warning-pink: #d9659c;
+  --vi-black: #0b0d11;
+  --vi-gray: #141a22;
+  --vi-white: #eef2f6;
+  --vi-blue-dark: #2f7abc;
+  --vi-warning-pink: #a45878;
   --color-ink: var(--vi-white);
   --color-ink-soft: rgba(219, 227, 240, 0.76);
   --color-ink-faint: rgba(219, 227, 240, 0.56);
@@ -14,9 +14,13 @@
   --color-cloud: rgba(255, 255, 255, 0.06);
   --color-panel: rgba(13, 18, 26, 0.72);
   --color-panel-strong: rgba(10, 14, 20, 0.92);
-  --shadow-soft: 0 18px 44px rgba(3, 8, 15, 0.38);
-  --shadow-lift: 0 34px 90px rgba(2, 7, 14, 0.56);
+  --shadow-soft: 0 18px 44px rgba(3, 8, 15, 0.3);
+  --shadow-lift: 0 30px 80px rgba(2, 7, 14, 0.42);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --type-label: 11px;
+  --type-meta: 12px;
+  --type-ui: 13px;
+  --type-body: 14px;
 }
 
 * {
@@ -43,9 +47,9 @@ body {
   color: var(--color-ink);
   min-height: 100vh;
   background:
-    radial-gradient(circle at 18% -8%, rgba(255, 255, 255, 0.12), transparent 36%),
-    linear-gradient(180deg, rgba(8, 12, 18, 0.72), rgba(5, 8, 12, 0.92)),
-    linear-gradient(135deg, #0d131c, #121926 58%, #0b1118);
+    radial-gradient(circle at 18% -8%, rgba(255, 255, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(8, 11, 16, 0.72), rgba(6, 8, 11, 0.92)),
+    linear-gradient(135deg, #0e1116, #11161d 58%, #0d1218);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   position: relative;
@@ -75,14 +79,14 @@ body::after {
   background-image:
     radial-gradient(
       circle at var(--glow-blue-x, 82%) var(--glow-blue-y, 12%),
-      rgba(0, 112, 201, var(--glow-blue-a, 0.42)),
-      rgba(0, 112, 201, 0.08) 34%,
+      rgba(47, 122, 188, var(--glow-blue-a, 0.36)),
+      rgba(47, 122, 188, 0.06) 34%,
       transparent 64%
     ),
     radial-gradient(
       circle at var(--glow-pink-x, 18%) var(--glow-pink-y, 88%),
-      rgba(232, 62, 140, var(--glow-pink-a, 0.36)),
-      rgba(232, 62, 140, 0.08) 36%,
+      rgba(164, 88, 120, var(--glow-pink-a, 0.24)),
+      rgba(164, 88, 120, 0.05) 36%,
       transparent 66%
     ),
     radial-gradient(circle at center, transparent 58%, rgba(6, 8, 12, 0.54));
